@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        id="cordova-plugin-tokbox" version="1.0">
+    <name>TokBox</name>
+
+	<description>
+	    Interactive video, voice and messaging application developed from Fitbase Team.
+	</description>
+
+	<license>MIT</license>
+
+	<engines>
+		<engine name="cordova" version=">=4.0.0"/>
+	</engines>
+
+	<js-module src="src/js/tokbox.js" name="TokBox">
+		<clobbers target="window.plugin.tokbox" />
+	</js-module>
+    
+
+	<!-- Android -->
+    <platform name="android">
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="TokBox">
+                <param name="android-package" value="com.fitbase.TokBox.TokBox"/>
+            </feature>
+        </config-file>
+
+        <config-file target="AndroidManifest.xml" parent="/manifest">
+			<uses-permission android:name="android.permission.CAMERA" />
+			<uses-permission android:name="android.permission.INTERNET" />
+			<uses-permission android:name="android.permission.RECORD_AUDIO" />
+			<uses-permission android:name="android.permission.WAKE_LOCK" />
+			<uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+			<uses-feature android:name="android.hardware.camera" android:required="true" />
+			<uses-feature android:name="android.hardware.camera.autofocus" android:required="true" />
+        </config-file>
+
+		<config-file target="AndroidManifest.xml" parent="/manifest/application">
+            <activity android:name="com.fitbase.TokBox.OpenTokActivity" android:theme="@style/AppTheme" android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale" ></activity>
+        </config-file>
+
+		<framework src="plugin.gradle" custom="true" type="gradleReference" />
+        <source-file src="src/android/TokBox.java" target-dir="src/com/fitbase/TokBox" />
+		<source-file src="src/android/ConstraintSetHelper.java" target-dir="src/com/fitbase/TokBox"/>
+		<source-file src="src/android/OpenTokActivity.java" target-dir="src/com/fitbase/TokBox"/>
+		
+		
+		<resource-file src="src/android/layouts/activity_main.xml" target="res/layout/activity_main.xml"/>		
+		<resource-file src="src/android/layouts/colors.xml" target="res/values/colors.xml"/>
+		<resource-file src="src/android/layouts/dimens.xml" target="res/values/dimens.xml"/>
+		<resource-file src="src/android/layouts/layout_ids.xml" target="res/values/layout_ids.xml"/>
+		<resource-file src="src/android/layouts/strings.xml" target="res/values/strings.xml"/>
+		<resource-file src="src/android/layouts/styles.xml" target="res/values/styles.xml"/>
+
+		<resource-file src="src/android/images/drawable/bckg_audio_only.xml" target="res/drawable/bckg_audio_only.xml"/>
+		<resource-file src="src/android/images/drawable/bckg_icon.xml" target="res/drawable/bckg_icon.xml"/>
+		<resource-file src="src/android/images/drawable/end_call_button.xml" target="res/drawable/end_call_button.xml"/>
+		<resource-file src="src/android/images/drawable/gradient_audionly.xml" target="res/drawable/gradient_audionly.xml"/>
+
+		<resource-file src="src/android/images/drawable-hdpi/avatar.png" target="res/drawable-hdpi/avatar.png"/>
+		<resource-file src="src/android/images/drawable-hdpi/camera.png" target="res/drawable-hdpi/camera.png"/>
+		<resource-file src="src/android/images/drawable-hdpi/hang_up.png" target="res/drawable-hdpi/hang_up.png"/>
+		<resource-file src="src/android/images/drawable-hdpi/mic_icon.png" target="res/drawable-hdpi/mic_icon.png"/>
+		<resource-file src="src/android/images/drawable-hdpi/muted_mic_icon.png" target="res/drawable-hdpi/muted_mic_icon.png"/>
+		<resource-file src="src/android/images/drawable-hdpi/no_video_icon.png" target="res/drawable-hdpi/no_video_icon.png"/>
+		<resource-file src="src/android/images/drawable-hdpi/video_icon.png" target="res/drawable-hdpi/video_icon.png"/>
+
+		<resource-file src="src/android/images/drawable-mdpi/avatar.png" target="res/drawable-mdpi/avatar.png"/>
+		<resource-file src="src/android/images/drawable-mdpi/camera.png" target="res/drawable-mdpi/camera.png"/>
+		<resource-file src="src/android/images/drawable-mdpi/hang_up.png" target="res/drawable-mdpi/hang_up.png"/>
+		<resource-file src="src/android/images/drawable-mdpi/mic_icon.png" target="res/drawable-mdpi/mic_icon.png"/>
+		<resource-file src="src/android/images/drawable-mdpi/muted_mic_icon.png" target="res/drawable-mdpi/muted_mic_icon.png"/>
+		<resource-file src="src/android/images/drawable-mdpi/no_video_icon.png" target="res/drawable-mdpi/no_video_icon.png"/>
+		<resource-file src="src/android/images/drawable-mdpi/video_icon.png" target="res/drawable-mdpi/video_icon.png"/>
+
+		<resource-file src="src/android/images/drawable-xhdpi/avatar.png" target="res/drawable-xhdpi/avatar.png"/>
+		<resource-file src="src/android/images/drawable-xhdpi/camera.png" target="res/drawable-xhdpi/camera.png"/>
+		<resource-file src="src/android/images/drawable-xhdpi/hang_up.png" target="res/drawable-xhdpi/hang_up.png"/>
+		<resource-file src="src/android/images/drawable-xhdpi/mic_icon.png" target="res/drawable-xhdpi/mic_icon.png"/>
+		<resource-file src="src/android/images/drawable-xhdpi/no_video_icon.png" target="res/drawable-xhdpi/no_video_icon.png"/>
+		<resource-file src="src/android/images/drawable-xhdpi/video_icon.png" target="res/drawable-xhdpi/video_icon.png"/>
+
+		<resource-file src="src/android/images/drawable-xxhdpi/avatar.png" target="res/drawable-xxhdpi/avatar.png"/>
+		<resource-file src="src/android/images/drawable-xxhdpi/camera.png" target="res/drawable-xxhdpi/camera.png"/>
+		<resource-file src="src/android/images/drawable-xxhdpi/hang_up.png" target="res/drawable-xxhdpi/hang_up.png"/>
+		<resource-file src="src/android/images/drawable-xxhdpi/mic_icon.png" target="res/drawable-xxhdpi/mic_icon.png"/>
+		<resource-file src="src/android/images/drawable-xxhdpi/muted_mic_icon.png" target="res/drawable-xxhdpi/muted_mic_icon.png"/>
+        <resource-file src="src/android/images/drawable-xxhdpi/no_video_icon.png" target="res/drawable-xxhdpi/no_video_icon.png"/>
+		<resource-file src="src/android/images/drawable-xxhdpi/video_icon.png" target="res/drawable-xxhdpi/video_icon.png"/>
+
+	 
+		<resource-file src="src/android/images/drawable-xxxhdpi/camera.png" target="res/drawable-xxxhdpi/camera.png"/>
+		<resource-file src="src/android/images/drawable-xxxhdpi/hang_up.png" target="res/drawable-xxxhdpi/hang_up.png"/>
+		<resource-file src="src/android/images/drawable-xxxhdpi/mic_icon.png" target="res/drawable-xxxhdpi/mic_icon.png"/>
+		<resource-file src="src/android/images/drawable-xxxhdpi/muted_mic_icon.png" target="res/drawable-xxxhdpi/muted_mic_icon.png"/>
+		<resource-file src="src/android/images/drawable-xxxhdpi/no_video_icon.png" target="res/drawable-xxxhdpi/no_video_icon.png"/>
+		<resource-file src="src/android/images/drawable-xxxhdpi/video_icon.png" target="res/drawable-xxxhdpi/video_icon.png"/>
+		<resource-file src="src/android/images/mipmap-ldpi/avatar.png" target="res/mipmap/avatar.png"/>
+    </platform>
+
+
+	<!-- ios -->
+	<platform name="ios">
+    	<config-file target="config.xml" parent="/*">
+      		<feature name="TokBox">
+        		<param name="ios-package" value="TokBox"/>
+      		</feature>
+    	</config-file>
+    	<header-file src="src/ios/TokBox.h"/>
+    	<source-file src="src/ios/TokBox.m"/>
+  	</platform>
+
+</plugin>
