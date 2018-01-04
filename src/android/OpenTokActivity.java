@@ -634,12 +634,12 @@ private RelativeLayout actionBar;
 
   @Override
   public void onVideoDisabled(SubscriberKit subscriberKit, String s) {
-    onDisableRemoteVideo(false);
+   // onDisableRemoteVideo(false);
   }
 
   @Override
   public void onVideoEnabled(SubscriberKit subscriberKit, String s) {
-    onDisableRemoteVideo(true);
+   // onDisableRemoteVideo(true);
   }
 
   @Override
