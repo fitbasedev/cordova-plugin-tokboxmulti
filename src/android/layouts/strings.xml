@@ -8,6 +8,6 @@
     <string name="title_settings_dialog">Permissions Required</string>
   <string name="network_quality">Network connection is unstable.</string>
     <string name="setting">Settings</string>
-  <string name="initialmessage">Waiting for trainer to join..</string>
+  <string name="initialmessage">Waiting for user to join..</string>
     <string name="cancel">Cancel</string>
 </resources>
