@@ -21,9 +21,10 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.view.WindowManager;
 
-import com.ionicframework.trainermobile381261.MainActivity;
-import com.ionicframework.trainermobile381261.R;
+import com.fitbasetrainer.MainActivity;
+import com.fitbasetrainer.R;
 import com.opentok.android.BaseVideoRenderer;
 import com.opentok.android.OpentokError;
 import com.opentok.android.Publisher;
@@ -81,12 +82,14 @@ private RelativeLayout actionBar;
   private TextView tvtimer,init_info,  mAlert;
 
   private static final String FORMAT_2 = "%02d";
+    private boolean FLAG_KEEP_SCREEN_ON=false;
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     Log.d(TAG, "onCreate");
 
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
+    getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
     hidehandler = new Handler();
     tokBoxData = getIntent().getStringExtra("tokbox_obj");
     try {
@@ -147,6 +150,7 @@ private RelativeLayout actionBar;
     btn_exit.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
+        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         onBackPressed();
       }
     });
