@@ -1,23 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/main_container"
+<RelativeLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:id="@+id/chat_room_layout"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  tools:context="com.fitbase.TokBox.OpenTokActivity">
+
+
+
+
+  <RelativeLayout
+    android:id="@+id/subscriberView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+   >
 
-  android:background="@color/publisher_border_color"
-  >
-
-    <RelativeLayout
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
-
-
-
-  <android.support.constraint.ConstraintLayout
-    android:id="@+id/subscriber_container"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:background="@color/subscriber_background">
     <TextView
       android:id="@+id/quality_warning"
       android:layout_width="match_parent"
@@ -28,6 +26,8 @@
       android:textColor="@color/warning_text"
       android:textSize="@dimen/alert_text"
       android:visibility="gone"></TextView>
+
+
     <TextView
       android:id="@+id/init_info"
       android:layout_width="match_parent"
@@ -41,118 +41,126 @@
       android:textSize="@dimen/alert_text"
       android:visibility="gone"/>
     <RelativeLayout
-      android:id="@+id/remoteAudioOnlyView"
+      android:id="@+id/mainsubscriberView"
       android:layout_width="match_parent"
       android:layout_height="match_parent"
-      android:layout_alignParentLeft="true"
       android:layout_alignParentTop="true"
-      android:background="@drawable/gradient_audionly"
-      android:visibility="gone" >
+   >
 
-      <ImageView
-        android:id="@+id/avatar"
+
+      <ProgressBar
+        android:id="@+id/loadingSpinner"
+        style="?android:attr/progressBarStyleLarge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="30dp"
-        android:src="@drawable/avatar" />
-
+        android:layout_centerInParent="true"
+        android:indeterminate="false"
+        android:visibility="gone" />
 
     </RelativeLayout>
-    </android.support.constraint.ConstraintLayout>
 
-        <LinearLayout
-            android:id="@+id/llcontrols"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:background="#212021"
-            android:layout_alignParentBottom="true"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/tvtimer"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_weight="1"
-                android:text="00:40:55"
-                android:layout_marginLeft="8dp"
-                android:textSize="15sp"
-                android:textColor="#B8B7B8"/>
-          <ImageButton
-            android:id="@+id/swapCam"
-            android:layout_width="@dimen/icon_width"
-            android:layout_height="@dimen/icon_height"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="14.1dp"
-            android:layout_toLeftOf="@+id/btn_exit"
-            android:background="@drawable/bckg_icon"
-            android:src="@drawable/camera"
-            android:onClick="swapCamera"/>
-
-            <ImageButton
-              android:id="@+id/btn_pausevideo"
-              android:layout_width="@dimen/icon_width"
-              android:layout_height="@dimen/icon_height"
-              android:layout_centerVertical="true"
-              android:layout_marginRight="14.1dp"
-              android:layout_toLeftOf="@+id/btn_exit"
-              android:background="@drawable/bckg_icon"
-              android:src="@drawable/video_icon" />
-
-            <ImageButton
-              android:id="@+id/btn_exit"
-              android:layout_width="@dimen/icon_width"
-              android:layout_height="@dimen/icon_height"
-              android:layout_centerHorizontal="true"
-              android:layout_centerVertical="true"
-              android:background="@drawable/end_call_button"
-              android:clickable="true"
-              android:src="@drawable/hang_up" />
-
-            <ImageButton
-              android:id="@+id/btn_pauseaudio"
-              android:layout_width="@dimen/icon_width"
-              android:layout_height="@dimen/icon_height"
-              android:layout_centerVertical="true"
-              android:layout_marginLeft="14.1dp"
-              android:layout_toRightOf="@+id/btn_exit"
-              android:background="@drawable/bckg_icon"
-              android:src="@drawable/mic_icon" />
+   <RelativeLayout
+     android:layout_width="match_parent"
+     android:layout_height="wrap_content"
+     android:layout_below="@+id/mainsubscriberView">
+     <HorizontalScrollView
+       android:id="@+id/subscribersListView"
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
 
 
-        </LinearLayout>
+       android:layout_alignParentBottom="true">
+
+       <LinearLayout
+         android:id="@+id/gallery"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_marginLeft="20dp"
+         android:layout_marginRight="20dp"
+         android:layout_marginTop="15dp"
+
+         android:orientation="horizontal"
+         android:smoothScrollbar="true"
+         android:spacing="20dip" />
+     </HorizontalScrollView>
+
+   </RelativeLayout>
+   </RelativeLayout>
 
 
-<!--  <RelativeLayout
-    android:id="@+id/publisher_container"
+  <RelativeLayout
+    android:id="@+id/publisherview"
     android:layout_width="@dimen/publisher_width"
     android:layout_height="@dimen/publisher_height"
     android:layout_alignParentBottom="true"
     android:layout_marginBottom="60dp"
     android:layout_marginLeft="@dimen/publisher_end_margin"
-    android:background="@color/publisher_border_color">
+    android:background="@color/publisher_border_color"
+    android:layout_above="@+id/llcontrols" >
 
-    <RelativeLayout
-      android:id="@+id/localAudioOnlyView"
-      android:layout_width="match_parent"
-      android:layout_height="match_parent"
-      android:layout_alignParentLeft="true"
-      android:layout_alignParentTop="true"
-      android:background="@drawable/gradient_audionly"
-      android:visibility="gone" >
-
-      <ImageView
-        android:id="@+id/localAvatar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="30dp"
-        android:src="@mipmap/avatar" />
-
-    </RelativeLayout>
-    </RelativeLayout>-->
   </RelativeLayout>
-</android.support.constraint.ConstraintLayout>
+  <LinearLayout
+    android:id="@+id/llcontrols"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:background="#212021"
+    android:layout_alignParentBottom="true"
+    android:orientation="horizontal">
+
+    <TextView
+      android:id="@+id/tvtimer"
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:layout_gravity="center_vertical"
+      android:layout_weight="1"
+      android:text="00:40:55"
+      android:layout_marginLeft="8dp"
+      android:textSize="15sp"
+      android:textColor="#B8B7B8"/>
+    <ImageButton
+      android:id="@+id/swapCam"
+      android:layout_width="@dimen/icon_width"
+      android:layout_height="@dimen/icon_height"
+      android:layout_centerVertical="true"
+      android:layout_marginRight="14.1dp"
+      android:layout_toLeftOf="@+id/btn_exit"
+      android:background="@drawable/bckg_icon"
+      android:src="@drawable/camera"
+      android:onClick="onCameraSwapClick"/>
+
+    <ImageButton
+      android:id="@+id/btn_pausevideo"
+      android:layout_width="@dimen/icon_width"
+      android:layout_height="@dimen/icon_height"
+      android:layout_centerVertical="true"
+      android:layout_marginRight="14.1dp"
+      android:layout_toLeftOf="@+id/btn_exit"
+      android:background="@drawable/bckg_icon"
+      android:src="@drawable/video_icon"
+      android:onClick="onPubliherMuteVideo"/>
+
+    <ImageButton
+      android:id="@+id/btn_exit"
+      android:layout_width="@dimen/icon_width"
+      android:layout_height="@dimen/icon_height"
+      android:layout_centerHorizontal="true"
+      android:layout_centerVertical="true"
+      android:background="@drawable/end_call_button"
+      android:clickable="true"
+      android:src="@drawable/hang_up"
+      android:onClick="onEndCallClick"/>
+
+    <ImageButton
+      android:id="@+id/btn_pauseaudio"
+      android:layout_width="@dimen/icon_width"
+      android:layout_height="@dimen/icon_height"
+      android:layout_centerVertical="true"
+      android:layout_marginLeft="14.1dp"
+      android:layout_toRightOf="@+id/btn_exit"
+      android:background="@drawable/bckg_icon"
+      android:src="@drawable/mic_icon"
+      android:onClick="onPublisherMuteClick"/>
+
+
+  </LinearLayout>
+</RelativeLayout>

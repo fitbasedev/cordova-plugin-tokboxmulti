@@ -9,10 +9,12 @@
   <color name="endCall">#cb1e28</color>
     <color name="white">#FFFFFF</color>
     <color name="cpg">#50d2b8</color>
-  <color name="quality_warning">#0a0a09</color>
+  <color name="quality_warning">#0d0d0d</color>
+  <color name="quality_alert">#cb1e28</color>
   <color name="warning_text">#efeeed</color>
     <color name="pc">#7d6297</color>
     <color name="publisher_border_color">#FFFFFF</color>
   <color name="subscriber_background">#414140</color>
+  <color name="black">#000000</color>
 
 </resources>

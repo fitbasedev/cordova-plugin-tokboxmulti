@@ -43,14 +43,16 @@
 
 		<framework src="plugin.gradle" custom="true" type="gradleReference" />
         <source-file src="src/android/TokBox.java" target-dir="src/com/fitbase/TokBox" />
-		<source-file src="src/android/ConstraintSetHelper.java" target-dir="src/com/fitbase/TokBox"/>
+		<source-file src="src/android/OnDragTouchListener.java" target-dir="src/com/fitbase/TokBox"/>
 		<source-file src="src/android/OpenTokActivity.java" target-dir="src/com/fitbase/TokBox"/>
+		<source-file src="src/android/Participant.java" target-dir="src/com/fitbase/TokBox"/>
+		<source-file src="src/android/Room.java" target-dir="src/com/fitbase/TokBox"/>
+		
 		
 		
 		<resource-file src="src/android/layouts/activity_main.xml" target="res/layout/activity_main.xml"/>		
 		<resource-file src="src/android/layouts/colors.xml" target="res/values/colors.xml"/>
 		<resource-file src="src/android/layouts/dimens.xml" target="res/values/dimens.xml"/>
-		<resource-file src="src/android/layouts/layout_ids.xml" target="res/values/layout_ids.xml"/>
 		<resource-file src="src/android/layouts/strings.xml" target="res/values/strings.xml"/>
 		<resource-file src="src/android/layouts/styles.xml" target="res/values/styles.xml"/>
 
@@ -58,6 +60,7 @@
 		<resource-file src="src/android/images/drawable/bckg_icon.xml" target="res/drawable/bckg_icon.xml"/>
 		<resource-file src="src/android/images/drawable/end_call_button.xml" target="res/drawable/end_call_button.xml"/>
 		<resource-file src="src/android/images/drawable/gradient_audionly.xml" target="res/drawable/gradient_audionly.xml"/>
+		<resource-file src="src/android/images/drawable/avatar_borders.xml" target="res/drawable/avatar_borders.xml"/>
 
 		<resource-file src="src/android/images/drawable-hdpi/avatar.png" target="res/drawable-hdpi/avatar.png"/>
 		<resource-file src="src/android/images/drawable-hdpi/camera.png" target="res/drawable-hdpi/camera.png"/>
