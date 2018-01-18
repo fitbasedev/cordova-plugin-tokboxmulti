@@ -446,7 +446,7 @@ public DisplayMetrics getDisplay(){
   }
 
   LinearLayout.LayoutParams getQVGALayoutParams(){
-    return new LinearLayout.LayoutParams(480, 320);
+    return new LinearLayout.LayoutParams(400, 320);
   }
 
   LinearLayout.LayoutParams getMainLayoutParams(){
