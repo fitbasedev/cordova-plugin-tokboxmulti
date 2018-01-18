@@ -191,6 +191,7 @@ import java.util.HashMap;
         this.mLastParticipantView.removeView(lastParticipant.getView());
 
         final LinearLayout.LayoutParams lp = mActivity.getQVGALayoutParams();
+        lp.setMargins(0,0,30,0);
         lastParticipant.setPreferredResolution(Participant.High_VIDEO_RESOLUTION);
         lastParticipant.setPreferredFrameRate(Participant.MAX_FPS);
         this.mParticipantsViewContainer.addView(lastParticipant.getView(), lp);
@@ -298,6 +299,7 @@ import java.util.HashMap;
       this.mLastParticipantView.addView(currentSelected.getView(), lp);
 
       lp = mActivity.getQVGALayoutParams();
+      lp.setMargins(0,0,30,0);
     //  mLastParticipant.getView().setOnClickListener(clickListener);
       mLastParticipant.getView().setOnLongClickListener(longClickListener);
       mLastParticipant.setPreferredResolution(Participant.High_VIDEO_RESOLUTION);
