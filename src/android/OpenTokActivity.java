@@ -1,12 +1,11 @@
 package com.fitbase.TokBox;
 
 
-
-
 import android.Manifest;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 
+import android.content.res.Configuration;
 import android.os.Bundle;
 
 import android.os.CountDownTimer;
@@ -18,7 +17,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.MotionEvent;
-
+import android.view.SurfaceView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
@@ -28,12 +27,13 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 
+import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+
 
 import com.fitbasetrainer.MainActivity;
 import com.fitbasetrainer.R;
-
- 
 
 import com.opentok.android.Publisher;
 
@@ -84,6 +84,7 @@ public class OpenTokActivity extends AppCompatActivity
   private ProgressBar mLoadingSub;
   private static final String FORMAT_2 = "%02d";
   private Room    mRoom;
+  private RelativeLayout scrollView;
   private ProgressDialog mProgressDialog;
   private Publisher.CameraCaptureResolution mCapturerRes = Publisher.CameraCaptureResolution.MEDIUM;
   private Publisher.CameraCaptureFrameRate  mCapturerFps = Publisher.CameraCaptureFrameRate.FPS_30;
@@ -96,6 +97,7 @@ public class OpenTokActivity extends AppCompatActivity
     setContentView(R.layout.activity_main);
     getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
     btnPausevideo = (ImageButton) findViewById(R.id.btn_pausevideo);
+
     btnPauseaudio = (ImageButton) findViewById(R.id.btn_pauseaudio);
     btn_exit = (ImageButton) findViewById(R.id.btn_exit);
     llcontrols = (LinearLayout) findViewById(R.id.llcontrols);
@@ -106,7 +108,7 @@ public class OpenTokActivity extends AppCompatActivity
     mLoadingSub = (ProgressBar) findViewById(R.id.loadingSpinner);
     init_info=(TextView)findViewById(R.id.init_info);
     mAlert = (TextView) findViewById(R.id.quality_warning);
-
+    scrollView=(RelativeLayout)findViewById(R.id.scrollView);
 
     hidehandler = new Handler();
     mPreview.setVisibility(View.GONE);
@@ -115,6 +117,7 @@ public class OpenTokActivity extends AppCompatActivity
     screenWidth = metrics.widthPixels;
     screenHeight = metrics.heightPixels;
     mLastParticipantView.getLayoutParams().width=screenWidth;
+    mLastParticipantView.getLayoutParams().height=screenHeight;
     //mPreview.setOnTouchListener(OpenTokActivity.this);
     mPreview.setOnTouchListener(new OnDragTouchListener(mPreview));
     tokBoxData = getIntent().getStringExtra("tokbox_obj");
@@ -178,6 +181,16 @@ public class OpenTokActivity extends AppCompatActivity
     public void run() {
 
       llcontrols.setVisibility(View.GONE);
+      Configuration newConfig=getResources().getConfiguration();
+      if(newConfig.orientation==Configuration.ORIENTATION_PORTRAIT){
+        DisplayMetrics metrics=getDisplay();
+        mLastParticipantView.getLayoutParams().height = (int) (metrics.heightPixels / 1.25);
+        mLastParticipantView.requestLayout();;
+      }else if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE){
+        DisplayMetrics metrics=getDisplay();
+        mLastParticipantView.getLayoutParams().height = (int) (metrics.heightPixels / 1.5);
+        mLastParticipantView.requestLayout();;
+      }
 
     }
   };
@@ -188,11 +201,46 @@ public class OpenTokActivity extends AppCompatActivity
   }
 
   public void showControllers() {
+    Configuration newConfig=getResources().getConfiguration();
+    if(newConfig.orientation==Configuration.ORIENTATION_PORTRAIT){
+      DisplayMetrics metrics=getDisplay();
+      mLastParticipantView.getLayoutParams().height = (int) (metrics.heightPixels / 1.35);
+      mLastParticipantView.requestLayout();;
+    }else if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE){
+      DisplayMetrics metrics=getDisplay();
+      mLastParticipantView.getLayoutParams().height = (int) (metrics.heightPixels / 1.6);
+      mLastParticipantView.requestLayout();;
+    }
     llcontrols.setVisibility(View.VISIBLE);
     hidehandler.removeCallbacks(hideControllerThread);
     hideControllers();
   }
 
+  @Override
+  public void onConfigurationChanged(Configuration newConfig) {
+    super.onConfigurationChanged(newConfig);
+    DisplayMetrics metrics = new DisplayMetrics();
+    getWindowManager().getDefaultDisplay().getMetrics(metrics);
+    screenWidth = metrics.widthPixels;
+    screenHeight = metrics.heightPixels;
+    if(mRoom.getParticipants().size()>1) {
+      if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+        mLastParticipantView.getLayoutParams().width = screenWidth;
+        mLastParticipantView.getLayoutParams().height = (int) (screenHeight / 1.5);
+      } else if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT) {
+        mLastParticipantView.getLayoutParams().width = screenWidth;
+        mLastParticipantView.getLayoutParams().height = (int) (screenHeight / 1.35);
+      }
+    }else{
+      mLastParticipantView.getLayoutParams().width = screenWidth;
+      mLastParticipantView.getLayoutParams().height = screenHeight;
+    }
+  }
+public DisplayMetrics getDisplay(){
+  DisplayMetrics metrics = new DisplayMetrics();
+  getWindowManager().getDefaultDisplay().getMetrics(metrics);
+  return metrics;
+}
   @Override
   public void onUserInteraction() {
     super.onUserInteraction();
@@ -370,7 +418,7 @@ public class OpenTokActivity extends AppCompatActivity
 
     ImageView imageView = new ImageView(this);
 
-    imageView.setLayoutParams(new GridView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+  //  imageView.setLayoutParams(new GridView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
     imageView.setBackgroundResource(R.drawable.avatar_borders);
     imageView.setImageResource(R.mipmap.avatar);
 

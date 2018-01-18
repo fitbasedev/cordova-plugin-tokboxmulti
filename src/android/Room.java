@@ -2,26 +2,27 @@ package com.fitbase.TokBox;
 
 import android.content.Context;
 
+import android.content.res.Configuration;
 import android.util.DisplayMetrics;
 import android.util.Log;
 
 import android.view.SurfaceView;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
+
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 
- 
+
 import com.opentok.android.BaseVideoRenderer;
 import com.opentok.android.OpentokError;
 import com.opentok.android.Publisher;
 import com.opentok.android.PublisherKit;
 import com.opentok.android.Session;
 import com.opentok.android.Stream;
- 
+
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -195,13 +196,13 @@ import java.util.HashMap;
         this.mParticipantsViewContainer.addView(lastParticipant.getView(), lp);
         lastParticipant.setSubscribeToVideo(true);
         lastParticipant.getView().setOnLongClickListener(longClickListener);
-        lastParticipant.getView().setOnClickListener(clickListener);
+       // lastParticipant.getView().setOnClickListener(clickListener);
       }
 
       mActivity.getLoadingSub().setVisibility(View.VISIBLE);
       p.setPreferredResolution(Participant.High_VIDEO_RESOLUTION);
       p.setPreferredFrameRate(Participant.MAX_FPS);
-      p.getView().setOnClickListener(clickLastParticipantListener);
+     // p.getView().setOnClickListener(clickLastParticipantListener);
       mLastParticipant = p;
 
       //Subscribe to this participant
@@ -213,8 +214,16 @@ import java.util.HashMap;
       mParticipantStream.put(stream, p);
       mParticipantConnection.put(stream.getConnection().getConnectionId(), p);
       if(mParticipants.size()>1){
-        mLastParticipantView.getLayoutParams().height=mActivity.dpToPx(450);
-        mLastParticipantView.requestLayout();
+      DisplayMetrics metrics=mActivity.getDisplay();
+        Configuration newConfig=mActivity.getResources().getConfiguration();
+        if(newConfig.orientation==Configuration.ORIENTATION_PORTRAIT){
+          mLastParticipantView.getLayoutParams().height = (int) (metrics.heightPixels / 1.35);
+          mLastParticipantView.requestLayout();;
+        }else if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE){
+          mLastParticipantView.getLayoutParams().height = (int) (metrics.heightPixels / 1.6);
+          mLastParticipantView.requestLayout();;
+        }
+
       }
 
     }
@@ -284,12 +293,12 @@ import java.util.HashMap;
       Participant currentSelected = mParticipantStream.get(view.getTag());
       currentSelected.setPreferredResolution(Participant.High_VIDEO_RESOLUTION);
       currentSelected.setPreferredFrameRate(Participant.MAX_FPS);
-      currentSelected.getView().setOnClickListener(clickLastParticipantListener);
+    //  currentSelected.getView().setOnClickListener(clickLastParticipantListener);
       currentSelected.getView().setOnLongClickListener(null);
       this.mLastParticipantView.addView(currentSelected.getView(), lp);
 
       lp = mActivity.getQVGALayoutParams();
-      mLastParticipant.getView().setOnClickListener(clickListener);
+    //  mLastParticipant.getView().setOnClickListener(clickListener);
       mLastParticipant.getView().setOnLongClickListener(longClickListener);
       mLastParticipant.setPreferredResolution(Participant.High_VIDEO_RESOLUTION);
       mLastParticipant.setPreferredFrameRate(Participant.MAX_FPS);
