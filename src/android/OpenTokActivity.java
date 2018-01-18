@@ -182,14 +182,23 @@ public class OpenTokActivity extends AppCompatActivity
 
       llcontrols.setVisibility(View.GONE);
       Configuration newConfig=getResources().getConfiguration();
-      if(newConfig.orientation==Configuration.ORIENTATION_PORTRAIT){
+      if(mRoom.getParticipants().size()>1) {
+        if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT) {
+          DisplayMetrics metrics = getDisplay();
+          mLastParticipantView.getLayoutParams().height = (int) (metrics.heightPixels / 1.25);
+          mLastParticipantView.requestLayout();
+          ;
+        } else if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+          DisplayMetrics metrics = getDisplay();
+          mLastParticipantView.getLayoutParams().height = (int) (metrics.heightPixels / 1.5);
+          mLastParticipantView.requestLayout();
+          ;
+        }
+      }else{
         DisplayMetrics metrics=getDisplay();
-        mLastParticipantView.getLayoutParams().height = (int) (metrics.heightPixels / 1.25);
-        mLastParticipantView.requestLayout();;
-      }else if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE){
-        DisplayMetrics metrics=getDisplay();
-        mLastParticipantView.getLayoutParams().height = (int) (metrics.heightPixels / 1.5);
-        mLastParticipantView.requestLayout();;
+        mLastParticipantView.getLayoutParams().height = metrics.heightPixels;
+        mLastParticipantView.getLayoutParams().width = metrics.widthPixels;
+        mLastParticipantView.requestLayout();
       }
 
     }
@@ -202,6 +211,7 @@ public class OpenTokActivity extends AppCompatActivity
 
   public void showControllers() {
     Configuration newConfig=getResources().getConfiguration();
+    if(mRoom.getParticipants().size()>1){
     if(newConfig.orientation==Configuration.ORIENTATION_PORTRAIT){
       DisplayMetrics metrics=getDisplay();
       mLastParticipantView.getLayoutParams().height = (int) (metrics.heightPixels / 1.35);
@@ -209,6 +219,12 @@ public class OpenTokActivity extends AppCompatActivity
     }else if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE){
       DisplayMetrics metrics=getDisplay();
       mLastParticipantView.getLayoutParams().height = (int) (metrics.heightPixels / 1.6);
+      mLastParticipantView.requestLayout();;
+    }}
+    else{
+      DisplayMetrics metrics=getDisplay();
+      mLastParticipantView.getLayoutParams().height = metrics.heightPixels;
+      mLastParticipantView.getLayoutParams().width = metrics.widthPixels;
       mLastParticipantView.requestLayout();;
     }
     llcontrols.setVisibility(View.VISIBLE);
