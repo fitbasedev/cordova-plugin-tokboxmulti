@@ -753,15 +753,15 @@ public class OpenTokActivity extends AppCompatActivity
             if (mSubscribers.size() == 1) {
                 onDisableRemoteVideo(false,subscriberViewContainer);
             }else if(mSubscribers.size()==2){
-                int id = getResources().getIdentifier("screen1sub" + (new Integer(position)).toString(), "id", MainActivity.this.getPackageName());
+                int id = getResources().getIdentifier("screen1sub" + (new Integer(position)).toString(), "id", OpenTokActivity.this.getPackageName());
                 RelativeLayout subscriberViewContainer = (RelativeLayout) findViewById(id);
                 onDisableRemoteVideo(false,subscriberViewContainer);
             }else if(mSubscribers.size()==3){
-                int id = getResources().getIdentifier("screen3sub" + (new Integer(position)).toString(), "id", MainActivity.this.getPackageName());
+                int id = getResources().getIdentifier("screen3sub" + (new Integer(position)).toString(), "id", OpenTokActivity.this.getPackageName());
                 RelativeLayout subscriberViewContainer = (RelativeLayout) findViewById(id);
                 onDisableRemoteVideo(false,subscriberViewContainer);
             }else if(mSubscribers.size()==4){
-                int id = getResources().getIdentifier("screen4sub" + (new Integer(position)).toString(), "id", MainActivity.this.getPackageName());
+                int id = getResources().getIdentifier("screen4sub" + (new Integer(position)).toString(), "id", OpenTokActivity.this.getPackageName());
                 RelativeLayout subscriberViewContainer = (RelativeLayout) findViewById(id);
                 onDisableRemoteVideo(false,subscriberViewContainer);
 
@@ -778,17 +778,17 @@ public class OpenTokActivity extends AppCompatActivity
                 onDisableRemoteVideo(true, subscriberViewContainer);
                 subscriberViewContainer.addView(subscriber.getView());
             } else if (mSubscribers.size() == 2) {
-                int id = getResources().getIdentifier("screen1sub" + (new Integer(position)).toString(), "id", MainActivity.this.getPackageName());
+                int id = getResources().getIdentifier("screen1sub" + (new Integer(position)).toString(), "id", OpenTokActivity.this.getPackageName());
                 RelativeLayout subscriberViewContainer = (RelativeLayout) findViewById(id);
                 onDisableRemoteVideo(true,subscriberViewContainer);
                 subscriberViewContainer.addView(subscriber.getView());
             } else if (mSubscribers.size() == 3) {
-                int id = getResources().getIdentifier("screen3sub" + (new Integer(position)).toString(), "id", MainActivity.this.getPackageName());
+                int id = getResources().getIdentifier("screen3sub" + (new Integer(position)).toString(), "id", OpenTokActivity.this.getPackageName());
                 RelativeLayout subscriberViewContainer = (RelativeLayout) findViewById(id);
                 onDisableRemoteVideo(true,subscriberViewContainer);
                 subscriberViewContainer.addView(subscriber.getView());
             } else if (mSubscribers.size() == 4) {
-                int id = getResources().getIdentifier("screen4sub" + (new Integer(position)).toString(), "id", MainActivity.this.getPackageName());
+                int id = getResources().getIdentifier("screen4sub" + (new Integer(position)).toString(), "id", OpenTokActivity.this.getPackageName());
                 RelativeLayout subscriberViewContainer = (RelativeLayout) findViewById(id);
                 onDisableRemoteVideo(true,subscriberViewContainer);
                 subscriberViewContainer.addView(subscriber.getView());
