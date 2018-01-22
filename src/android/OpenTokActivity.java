@@ -32,6 +32,7 @@ import com.opentok.android.Session;
 import com.opentok.android.Stream;
 import com.opentok.android.Subscriber;
 import com.opentok.android.SubscriberKit;
+import android.content.res.Configuration;
 
 import org.json.JSONObject;
 
@@ -496,6 +497,36 @@ public class OpenTokActivity extends AppCompatActivity
                 ViewContainer.removeView(mSubscribers.get(i).getView());
             }
         }
+    }
+     @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        DisplayMetrics maMetrics  =getDisplay();
+        if (mSubscribers.size() == 1) {
+            subscriberViewContainer.getLayoutParams().height = maMetrics.heightPixels;
+            subscriberViewContainer.getLayoutParams().width = maMetrics.widthPixels;
+            subscriberViewContainer.requestLayout();
+        }else if(mSubscribers.size()==2){
+            screen1sub0.getLayoutParams().height=maMetrics.heightPixels/2;
+            screen1sub1.getLayoutParams().height=maMetrics.heightPixels/2;
+        }else if(mSubscribers.size()==3){
+            screen3sub0.getLayoutParams().height=maMetrics.heightPixels/2;
+            screen3sub1.getLayoutParams().width=maMetrics.widthPixels/2;
+            screen3sub2.getLayoutParams().width=maMetrics.widthPixels/2;
+        }else if(mSubscribers.size()==4){
+            mScreen4.setVisibility(View.VISIBLE);
+            screen4sub0.getLayoutParams().width=maMetrics.widthPixels/2;
+            screen4sub0.getLayoutParams().height=maMetrics.heightPixels/2;
+            screen4sub1.getLayoutParams().width=maMetrics.widthPixels/2;
+            screen4sub1.getLayoutParams().height=maMetrics.heightPixels/2;
+            screen4sub2.getLayoutParams().height=maMetrics.heightPixels/2;
+            screen4sub2.getLayoutParams().width=maMetrics.widthPixels/2;
+            screen4sub3.getLayoutParams().height=maMetrics.heightPixels/2;
+            screen4sub3.getLayoutParams().width=maMetrics.widthPixels/2;
+
+
+        }
+
     }
 
     private void calculateLayout() {
