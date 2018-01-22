@@ -243,6 +243,20 @@ public class OpenTokActivity extends AppCompatActivity
 
 
     }
+     public void onDisableRemoteVideo(boolean video ,RelativeLayout ViewContainer ){
+        if (!video) {
+            RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(
+                    this.getResources().getDisplayMetrics().widthPixels, this.getResources()
+                    .getDisplayMetrics().heightPixels);
+            avatar = new ImageView(this);
+            avatar.setImageResource(R.mipmap.avatar);
+            avatar.setBackgroundResource(R.drawable.bckg_audio_only);
+         ViewContainer.addView(avatar,layoutParams);
+        } else {
+
+           ViewContainer.removeAllViews();
+        }
+    }
     @Override
     protected void onStart() {
         Log.d(TAG, "onStart");
@@ -728,18 +742,61 @@ public class OpenTokActivity extends AppCompatActivity
 
     }
 
-    @Override
+  @Override
     public void onVideoDisabled(SubscriberKit subscriberKit, String reason) {
         if (reason.equals("quality")) {
 
             showNetworkWarning();
+        }else if(reason.equals("publishVideo")){
+            Subscriber subscriber = mSubscriberStreams.get(subscriberKit.getStream());
+            int position = mSubscribers.indexOf(subscriber);
+            if (mSubscribers.size() == 1) {
+                onDisableRemoteVideo(false,subscriberViewContainer);
+            }else if(mSubscribers.size()==2){
+                int id = getResources().getIdentifier("screen1sub" + (new Integer(position)).toString(), "id", MainActivity.this.getPackageName());
+                RelativeLayout subscriberViewContainer = (RelativeLayout) findViewById(id);
+                onDisableRemoteVideo(false,subscriberViewContainer);
+            }else if(mSubscribers.size()==3){
+                int id = getResources().getIdentifier("screen3sub" + (new Integer(position)).toString(), "id", MainActivity.this.getPackageName());
+                RelativeLayout subscriberViewContainer = (RelativeLayout) findViewById(id);
+                onDisableRemoteVideo(false,subscriberViewContainer);
+            }else if(mSubscribers.size()==4){
+                int id = getResources().getIdentifier("screen4sub" + (new Integer(position)).toString(), "id", MainActivity.this.getPackageName());
+                RelativeLayout subscriberViewContainer = (RelativeLayout) findViewById(id);
+                onDisableRemoteVideo(false,subscriberViewContainer);
+
+            }
         }
     }
 
     @Override
-    public void onVideoEnabled(SubscriberKit subscriberKit, String s) {
+    public void onVideoEnabled(SubscriberKit subscriberKit, String reason) {
+        if (reason.equals("publishVideo")) {
+            Subscriber subscriber = mSubscriberStreams.get(subscriberKit.getStream());
+            int position = mSubscribers.indexOf(subscriber);
+            if (mSubscribers.size() == 1) {
+                onDisableRemoteVideo(true, subscriberViewContainer);
+                subscriberViewContainer.addView(subscriber.getView());
+            } else if (mSubscribers.size() == 2) {
+                int id = getResources().getIdentifier("screen1sub" + (new Integer(position)).toString(), "id", MainActivity.this.getPackageName());
+                RelativeLayout subscriberViewContainer = (RelativeLayout) findViewById(id);
+                onDisableRemoteVideo(true,subscriberViewContainer);
+                subscriberViewContainer.addView(subscriber.getView());
+            } else if (mSubscribers.size() == 3) {
+                int id = getResources().getIdentifier("screen3sub" + (new Integer(position)).toString(), "id", MainActivity.this.getPackageName());
+                RelativeLayout subscriberViewContainer = (RelativeLayout) findViewById(id);
+                onDisableRemoteVideo(true,subscriberViewContainer);
+                subscriberViewContainer.addView(subscriber.getView());
+            } else if (mSubscribers.size() == 4) {
+                int id = getResources().getIdentifier("screen4sub" + (new Integer(position)).toString(), "id", MainActivity.this.getPackageName());
+                RelativeLayout subscriberViewContainer = (RelativeLayout) findViewById(id);
+                onDisableRemoteVideo(true,subscriberViewContainer);
+                subscriberViewContainer.addView(subscriber.getView());
 
+            }
+        }
     }
+
 
     @Override
     public void onVideoDisableWarning(SubscriberKit subscriberKit) {
