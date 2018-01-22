@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:id="@+id/screen_2"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+
+    tools:context="com.fitbase.TokBox.OpenTokActivity">
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/screen1sub0"
+       >
+
+       <!-- <ToggleButton
+            android:text="Toggle Audio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/toggleAudioScreen1Subscriber0"
+            android:textOff="@string/audio"
+            android:textOn="@string/audio"
+            android:checked="true"
+            android:visibility="invisible" />-->
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:id="@+id/screen1sub1"
+        android:layout_below="@+id/screen1sub0"
+        >
+
+      <!--  <ToggleButton
+            android:text="Toggle Audio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/toggleAudioScreen1Subscriber1"
+            android:textOff="@string/audio"
+            android:textOn="@string/audio"
+            android:checked="true"
+            android:visibility="invisible" />-->
+    </RelativeLayout>
+
+</RelativeLayout>

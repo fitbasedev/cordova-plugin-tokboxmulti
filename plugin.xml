@@ -45,12 +45,15 @@
         <source-file src="src/android/TokBox.java" target-dir="src/com/fitbase/TokBox" />
 		<source-file src="src/android/OnDragTouchListener.java" target-dir="src/com/fitbase/TokBox"/>
 		<source-file src="src/android/OpenTokActivity.java" target-dir="src/com/fitbase/TokBox"/>
-		<source-file src="src/android/Participant.java" target-dir="src/com/fitbase/TokBox"/>
-		<source-file src="src/android/Room.java" target-dir="src/com/fitbase/TokBox"/>
+		<!-- <source-file src="src/android/Participant.java" target-dir="src/com/fitbase/TokBox"/>
+		<source-file src="src/android/Room.java" target-dir="src/com/fitbase/TokBox"/> -->
 		
 		
 		
-		<resource-file src="src/android/layouts/activity_main.xml" target="res/layout/activity_main.xml"/>		
+		<resource-file src="src/android/layouts/activity_main.xml" target="res/layout/activity_main.xml"/>	
+		<resource-file src="src/android/layouts/screen_2.xml" target="res/layout/screen_2.xml"/>	
+		<resource-file src="src/android/layouts/screen_3.xml" target="res/layout/screen_3.xml"/>	
+		<resource-file src="src/android/layouts/screen_4.xml" target="res/layout/screen_4.xml"/>	
 		<resource-file src="src/android/layouts/colors.xml" target="res/values/colors.xml"/>
 		<resource-file src="src/android/layouts/dimens.xml" target="res/values/dimens.xml"/>
 		<resource-file src="src/android/layouts/strings.xml" target="res/values/strings.xml"/>

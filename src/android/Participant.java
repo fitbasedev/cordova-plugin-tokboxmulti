@@ -12,7 +12,7 @@ import com.opentok.android.Subscriber;
 import com.opentok.android.VideoUtils;
 
 
-
+/*
 public class Participant extends Subscriber {
 
     private static final String LOGTAG = "Participant";
@@ -110,4 +110,4 @@ public class Participant extends Subscriber {
         alertDialog.show();
     }
 
-}
+}*/

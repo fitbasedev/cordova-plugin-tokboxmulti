@@ -32,7 +32,7 @@ import java.util.HashMap;
  */
 
 
-  public class Room extends Session {
+ /* public class Room extends Session {
 
     private static final String LOGTAG = "opentok-room";
 
@@ -359,5 +359,5 @@ import java.util.HashMap;
 
 
 
-}
+}*/
 
