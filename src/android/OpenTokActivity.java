@@ -84,9 +84,7 @@ public class OpenTokActivity extends AppCompatActivity
     private View mScreen1,mScreen3,mScreen4;
     RelativeLayout subscriberViewContainer;
     private RelativeLayout screen1sub0;
-    private ToggleButton toggleAudioScreen1Subscriber0;
-    private RelativeLayout screen1sub1,screen3sub0,screen3sub1,screen3sub2,screen4sub0,screen4sub1,screen4sub2,screen4sub3;
-    private ToggleButton toggleAudioScreen1Subscriber1;
+    private RelativeLayout screen1sub1,screen3sub0,screen3sub1,screen3sub2,screen4sub0,screen4sub1,screen4sub2,screen4sub3,subscriberAudio0;
     private ImageView mLocalAudioOnlyImage,avatar;
     //---------------------screen2------------------------
     private String tokBoxData, apiKey, token, sessionId, publisherId, duration, startdate;
@@ -95,6 +93,7 @@ public class OpenTokActivity extends AppCompatActivity
     ImageButton btnPausevideo, btnPauseaudio, btn_exit;
     LinearLayout llcontrols;
     private TextView tvtimer,init_info,  mAlert;
+    private ImageButton remoteAudio0;
     private ProgressDialog mProgressDialog,mSessionReconnectDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -120,9 +119,9 @@ public class OpenTokActivity extends AppCompatActivity
         //----screen2 ---------------------------
         mScreen1 = findViewById(R.id.screen1);
         screen1sub0 =(RelativeLayout)findViewById(R.id.screen1sub0);
-      //  toggleAudioScreen1Subscriber0=(ToggleButton)findViewById(R.id.toggleAudioScreen1Subscriber0);
+      
         screen1sub1=(RelativeLayout)findViewById(R.id.screen1sub1);
-      //  toggleAudioScreen1Subscriber1=(ToggleButton)findViewById(R.id.toggleAudioScreen1Subscriber1);
+       
         //---------------------------------------------
         //----------------screen3------------------------
         mScreen3 = findViewById(R.id.screen3);
@@ -137,6 +136,10 @@ public class OpenTokActivity extends AppCompatActivity
         screen4sub2=(RelativeLayout)findViewById(R.id.screen4sub2);
         screen4sub3=(RelativeLayout)findViewById(R.id.screen4sub3);
         //---------------------------------------------
+        //-------------------audio 0-------------------------------
+        subscriberAudio0=(RelativeLayout)findViewById(R.id.subscriberAudio0);
+        remoteAudio0=(ImageButton)findViewById(R.id.remoteAudio0);
+        //--------------------------------------------------------
         hidehandler = new Handler();
          tokBoxData = getIntent().getStringExtra("tokbox_obj");
         try {
@@ -245,9 +248,8 @@ public class OpenTokActivity extends AppCompatActivity
     }
      public void onDisableRemoteVideo(boolean video ,RelativeLayout ViewContainer ){
         if (!video) {
-            RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(
-                    this.getResources().getDisplayMetrics().widthPixels, this.getResources()
-                    .getDisplayMetrics().heightPixels);
+             RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(
+                    ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.MATCH_PARENT);
             avatar = new ImageView(this);
             avatar.setImageResource(R.mipmap.avatar);
             avatar.setBackgroundResource(R.drawable.bckg_audio_only);
@@ -271,14 +273,7 @@ public class OpenTokActivity extends AppCompatActivity
     private Runnable hideControllerThread = new Runnable() {
 
         public void run() {
-//      volumeBar.setVisibility(View.GONE);
-//      audioControllView.setVisibility(View.GONE);
-//      topBar.setVisibility(View.GONE);
             llcontrols.setVisibility(View.GONE);
-//      RelativeLayout.LayoutParams params=new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT,RelativeLayout.LayoutParams.WRAP_CONTENT);
-//      params.setMargins(10, 0, 0, 10);
-//      mSubscriberViewContainer.setLayoutParams(params);
-//      btnPauseaudio.setVisibility(View.GONE);
         }
     };
 
@@ -289,14 +284,7 @@ public class OpenTokActivity extends AppCompatActivity
     }
 
     public void showControllers() {
-//    volumeBar.setVisibility(View.VISIBLE);
-//    topBar.setVisibility(View.VISIBLE);
-//    audioControllView.setVisibility(View.VISIBLE);
         llcontrols.setVisibility(View.VISIBLE);
-//    RelativeLayout.LayoutParams params=new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT,RelativeLayout.LayoutParams.WRAP_CONTENT);
-//    params.setMargins(10, 0, 0, 60);
-//    mSubscriberViewContainer.setLayoutParams(params);
-//    btnPauseaudio.setVisibility(View.VISIBLE);
         hidehandler.removeCallbacks(hideControllerThread);
         hideControllers();
     }
@@ -465,32 +453,9 @@ public class OpenTokActivity extends AppCompatActivity
         mSession.subscribe(subscriber);
         mSubscribers.add(subscriber);
         mSubscriberStreams.put(stream, subscriber);
-
-
         updateView();
-       /* int position = mSubscribers.size()-1  ;  ;
-        int id = getResources().getIdentifier("subscriberview" + (new Integer(position)).toString(), "id", MainActivity.this.getPackageName());
-        RelativeLayout subscriberViewContainer = (RelativeLayout) findViewById(id);
+        calculateLayout();
 
-
-        subscriber.setStyle(BaseVideoRenderer.STYLE_VIDEO_SCALE, BaseVideoRenderer.STYLE_VIDEO_FILL);
-        subscriberViewContainer.addView(subscriber.getView());
-
-        id = getResources().getIdentifier("toggleAudioSubscriber" + (new Integer(position)).toString(), "id", MainActivity.this.getPackageName());
-        final ToggleButton toggleAudio = (ToggleButton) findViewById(id);
-        toggleAudio.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    subscriber.setSubscribeToAudio(true);
-                } else {
-                    subscriber.setSubscribeToAudio(false);
-                }
-            }
-        });
-        toggleAudio.setVisibility(View.VISIBLE);
-        subscriberViewContainer.setVisibility(View.VISIBLE);*/
-       calculateLayout();
-//updateLayout(subscriberViewContainer);
     }
 
     private void updateView() {
@@ -543,83 +508,110 @@ public class OpenTokActivity extends AppCompatActivity
 
     }
 
-    private void calculateLayout() {
+    private void calculateLayout( ) {
         DisplayMetrics maMetrics  =getDisplay();
-    if(mSubscribers.size()==1){
-        mPublisherViewContainer.setVisibility(View.VISIBLE);
-        subscriberViewContainer.addView(mSubscribers.get(0).getView());
-        subscriberViewContainer.getLayoutParams().height=maMetrics.heightPixels;
-        subscriberViewContainer.getLayoutParams().width=maMetrics.widthPixels;
-        subscriberViewContainer.requestLayout();
+        if(mSubscribers.size()==1){
+            boolean isMuted=mSubscribers.get(0).getSubscribeToAudio();
+            mPublisherViewContainer.setVisibility(View.VISIBLE);
+            subscriberViewContainer.addView(mSubscribers.get(0).getView());
+            subscriberAudio0.setVisibility(View.VISIBLE);
+            subscriberAudio0.bringToFront();;
+            remoteAudio0.setOnClickListener(clickListener);
+            remoteAudio0.setTag(mSubscribers.get(0).getStream());
+            remoteAudio0.setImageResource(isMuted ? R.drawable.audio : R.drawable.no_audio);
+            subscriberViewContainer.getLayoutParams().height=maMetrics.heightPixels;
+            subscriberViewContainer.getLayoutParams().width=maMetrics.widthPixels;
+            subscriberViewContainer.requestLayout();
 
-    }else if(mSubscribers.size()==2){
+        }else if(mSubscribers.size()==2){
+            mScreen1.setVisibility(View.VISIBLE);
+            screen1sub0.getLayoutParams().height=maMetrics.heightPixels/2;
+            screen1sub1.getLayoutParams().height=maMetrics.heightPixels/2;
+            for (int i=0;i<mSubscribers.size();i++){
+                boolean isMuted=mSubscribers.get(i).getSubscribeToAudio();
+                int id = getResources().getIdentifier("screen1sub" + (new Integer(i)).toString(), "id", OpenTokActivity.this.getPackageName());
+                int controlsId=getResources().getIdentifier("screen1subscriberAudio" + (new Integer(i)).toString(), "id", OpenTokActivity.this.getPackageName());
+               int remoteId=getResources().getIdentifier("screen1remoteAudio" + (new Integer(i)).toString(), "id", OpenTokActivity.this.getPackageName());
+                RelativeLayout ViewContainer = (RelativeLayout) findViewById(id);
+                RelativeLayout controls=(RelativeLayout)findViewById(controlsId);
+                ImageButton remoteAudio=(ImageButton)findViewById(remoteId);
+                remoteAudio.setOnClickListener(clickListener);
+                remoteAudio.setTag(mSubscribers.get(i).getStream());
+                ViewContainer.addView(mSubscribers.get(i).getView());
+                controls.setVisibility(View.VISIBLE);
+                remoteAudio.setImageResource(isMuted ? R.drawable.audio : R.drawable.no_audio);
+                controls.bringToFront();
+            }
 
-        mScreen1.setVisibility(View.VISIBLE);
-        screen1sub0.getLayoutParams().height=maMetrics.heightPixels/2;
-        screen1sub1.getLayoutParams().height=maMetrics.heightPixels/2;
-       for (int i=0;i<mSubscribers.size();i++){
-           int id = getResources().getIdentifier("screen1sub" + (new Integer(i)).toString(), "id", OpenTokActivity.this.getPackageName());
-           RelativeLayout ViewContainer = (RelativeLayout) findViewById(id);
-           ViewContainer.addView(mSubscribers.get(i).getView());
-       }
+        }else if(mSubscribers.size()==3){
+            mScreen3.setVisibility(View.VISIBLE);
+            screen3sub0.getLayoutParams().height=maMetrics.heightPixels/2;
+            screen3sub1.getLayoutParams().width=maMetrics.widthPixels/2;
+            screen3sub2.getLayoutParams().width=maMetrics.widthPixels/2;
 
-    }else if(mSubscribers.size()==3){
-        mScreen3.setVisibility(View.VISIBLE);
-        screen3sub0.getLayoutParams().height=maMetrics.heightPixels/2;
-        screen3sub1.getLayoutParams().width=maMetrics.widthPixels/2;
-        screen3sub2.getLayoutParams().width=maMetrics.widthPixels/2;
+            for (int i=0;i<mSubscribers.size();i++){
+                boolean isMuted=mSubscribers.get(i).getSubscribeToAudio();
+                int id = getResources().getIdentifier("screen3sub" + (new Integer(i)).toString(), "id", OpenTokActivity.this.getPackageName());
+                int controlsId=getResources().getIdentifier("screen3subscriberAudio" + (new Integer(i)).toString(), "id", OpenTokActivity.this.getPackageName());
+                int remoteId=getResources().getIdentifier("screen3remoteAudio" + (new Integer(i)).toString(), "id", OpenTokActivity.this.getPackageName());
+                RelativeLayout controls=(RelativeLayout)findViewById(controlsId);
+                ImageButton remoteAudio=(ImageButton)findViewById(remoteId);
+                remoteAudio.setOnClickListener(clickListener);
+                remoteAudio.setTag(mSubscribers.get(i).getStream());
+                remoteAudio.setImageResource(isMuted ? R.drawable.audio : R.drawable.no_audio);
+                RelativeLayout subscriberViewContainer = (RelativeLayout) findViewById(id);
+                subscriberViewContainer.addView(mSubscribers.get(i).getView());
+                controls.setVisibility(View.VISIBLE);
+                controls.bringToFront();
+            }
+        }else if(mSubscribers.size()==4){
+            mScreen4.setVisibility(View.VISIBLE);
+            screen4sub0.getLayoutParams().width=maMetrics.widthPixels/2;
+            screen4sub0.getLayoutParams().height=maMetrics.heightPixels/2;
+            screen4sub1.getLayoutParams().width=maMetrics.widthPixels/2;
+            screen4sub1.getLayoutParams().height=maMetrics.heightPixels/2;
+            screen4sub2.getLayoutParams().height=maMetrics.heightPixels/2;
+            screen4sub2.getLayoutParams().width=maMetrics.widthPixels/2;
+            screen4sub3.getLayoutParams().height=maMetrics.heightPixels/2;
+            screen4sub3.getLayoutParams().width=maMetrics.widthPixels/2;
+            for (int i=0;i<mSubscribers.size();i++){
+                boolean isMuted=mSubscribers.get(i).getSubscribeToAudio();
+                int id = getResources().getIdentifier("screen4sub" + (new Integer(i)).toString(), "id", OpenTokActivity.this.getPackageName());
+                int controlsId=getResources().getIdentifier("screen4subscriberAudio" + (new Integer(i)).toString(), "id", OpenTokActivity.this.getPackageName());
+                int remoteId=getResources().getIdentifier("screen4remoteAudio" + (new Integer(i)).toString(), "id", OpenTokActivity.this.getPackageName());
+                RelativeLayout controls=(RelativeLayout)findViewById(controlsId);
+                ImageButton remoteAudio=(ImageButton)findViewById(remoteId);
+                remoteAudio.setOnClickListener(clickListener);
+                remoteAudio.setTag(mSubscribers.get(i).getStream());
+                remoteAudio.setImageResource(isMuted ? R.drawable.audio : R.drawable.no_audio);
+                RelativeLayout subscriberViewContainer = (RelativeLayout) findViewById(id);
+                subscriberViewContainer.addView(mSubscribers.get(i).getView());
+                controls.setVisibility(View.VISIBLE);
+                controls.bringToFront();
+            }
 
-        for (int i=0;i<mSubscribers.size();i++){
-            int id = getResources().getIdentifier("screen3sub" + (new Integer(i)).toString(), "id", OpenTokActivity.this.getPackageName());
-            RelativeLayout subscriberViewContainer = (RelativeLayout) findViewById(id);
-            subscriberViewContainer.addView(mSubscribers.get(i).getView());
         }
-    }else if(mSubscribers.size()==4){
-        mScreen4.setVisibility(View.VISIBLE);
-        screen4sub0.getLayoutParams().width=maMetrics.widthPixels/2;
-        screen4sub0.getLayoutParams().height=maMetrics.heightPixels/2;
-        screen4sub1.getLayoutParams().width=maMetrics.widthPixels/2;
-        screen4sub1.getLayoutParams().height=maMetrics.heightPixels/2;
-        screen4sub2.getLayoutParams().height=maMetrics.heightPixels/2;
-        screen4sub2.getLayoutParams().width=maMetrics.widthPixels/2;
-        screen4sub3.getLayoutParams().height=maMetrics.heightPixels/2;
-        screen4sub3.getLayoutParams().width=maMetrics.widthPixels/2;
-        for (int i=0;i<mSubscribers.size();i++){
-            int id = getResources().getIdentifier("screen4sub" + (new Integer(i)).toString(), "id", OpenTokActivity.this.getPackageName());
-            RelativeLayout subscriberViewContainer = (RelativeLayout) findViewById(id);
-            subscriberViewContainer.addView(mSubscribers.get(i).getView());
-        }
-
     }
-    }
-
-    /*private void updateLayout(RelativeLayout subscriberViewContainer) {
-        DisplayMetrics maMetrics  =getDisplay();
-    if(mSubscribers.size()==2){
-        RelativeLayout aboveViewContainer = (RelativeLayout) findViewById(R.id.subscriberview0);
-        aboveViewContainer.getLayoutParams().height= (int) (maMetrics.heightPixels/2);
-        aboveViewContainer.requestLayout();
-    }else if(mSubscribers.size()==3){
-        RelativeLayout aboveViewContainer = (RelativeLayout) findViewById(R.id.subscriberview1);
-        subscriberViewContainer.getLayoutParams().height=maMetrics.heightPixels/2;
-        subscriberViewContainer.getLayoutParams().width=aboveViewContainer.getWidth()/2;
-        aboveViewContainer.getLayoutParams().width=maMetrics.widthPixels/2;
-    }else if(mSubscribers.size()==4){
-        RelativeLayout aboveViewContainer = (RelativeLayout) findViewById(R.id.subscriberview0);
-        aboveViewContainer.getLayoutParams().width= (int) (maMetrics.widthPixels/2);
-        aboveViewContainer.requestLayout();
-        subscriberViewContainer.getLayoutParams().height=maMetrics.heightPixels/2;
-        subscriberViewContainer.getLayoutParams().width=aboveViewContainer.getWidth();
-        subscriberViewContainer.requestLayout();
-    }
-    }*/
-
 
     public DisplayMetrics getDisplay(){
         DisplayMetrics metrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(metrics);
         return metrics;
     }
+     private View.OnClickListener clickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            Subscriber participant = mSubscriberStreams.get(view.getTag());
+            boolean enableAudioOnly = participant.getSubscribeToAudio();
+            if (enableAudioOnly) {
+                participant.setSubscribeToAudio(false);
+                ((ImageButton)view).setImageResource(R.drawable.no_audio);
+            } else {
+                participant.setSubscribeToAudio(true);
+                ((ImageButton)view).setImageResource(R.drawable.audio);
+            }
+        }
+    };
 
     @Override
     public void onStreamDropped(Session session, Stream stream) {
@@ -629,24 +621,9 @@ public class OpenTokActivity extends AppCompatActivity
         if (subscriber == null) {
             return;
         }
-
-       /* int position = mSubscribers.indexOf(subscriber);
-        int id = getResources().getIdentifier("subscriberview" + (new Integer(position)).toString(), "id", MainActivity.this.getPackageName());
-*/
         mSubscribers.remove(subscriber);
         mSubscriberStreams.remove(stream);
-
-        //RelativeLayout subscriberViewContainer = (RelativeLayout) findViewById(id);
-
-       // subscriberViewContainer.removeView(subscriber.getView());
-
-
-      /*  id = getResources().getIdentifier("toggleAudioSubscriber" + (new Integer(position)).toString(), "id", MainActivity.this.getPackageName());
-        final ToggleButton toggleAudio = (ToggleButton) findViewById(id);
-        toggleAudio.setOnCheckedChangeListener(null);
-        toggleAudio.setVisibility(View.INVISIBLE);*/
-
-          if(mSubscribers.size()==0) {
+        if(mSubscribers.size()==0) {
               init_info.setBackgroundResource(R.color.quality_warning);
               init_info.setTextColor(this.getResources().getColor(R.color.white));
               init_info.bringToFront();
@@ -656,9 +633,12 @@ public class OpenTokActivity extends AppCompatActivity
         calculateLayout();
     }
 
-    private void clearView() {
+      private void clearView() {
         if(mSubscribers.size()==1){
             subscriberViewContainer.removeView(mSubscribers.get(0).getView());
+            subscriberAudio0.setVisibility(View.GONE);
+            if(avatar!=null)
+                subscriberViewContainer.removeView(avatar);
         }else if(mSubscribers.size()==2){
             for (int i=0;i<mSubscribers.size();i++){
                 int id = getResources().getIdentifier("screen1sub" + (new Integer(i)).toString(), "id", OpenTokActivity.this.getPackageName());
@@ -714,6 +694,7 @@ public class OpenTokActivity extends AppCompatActivity
                 if (subscriber != null) {
                     mSession.unsubscribe(subscriber);
                     subscriber.destroy();
+                    mSubscribers.remove(subscriber);
                 }
             }
         }
@@ -742,29 +723,68 @@ public class OpenTokActivity extends AppCompatActivity
 
     }
 
-  @Override
+     @Override
     public void onVideoDisabled(SubscriberKit subscriberKit, String reason) {
         if (reason.equals("quality")) {
-
             showNetworkWarning();
         }else if(reason.equals("publishVideo")){
             Subscriber subscriber = mSubscriberStreams.get(subscriberKit.getStream());
+            boolean isMuted=subscriber.getSubscribeToAudio();
             int position = mSubscribers.indexOf(subscriber);
             if (mSubscribers.size() == 1) {
                 onDisableRemoteVideo(false,subscriberViewContainer);
+               int id = getResources().getIdentifier("subscriberAudio" + (new Integer(position)).toString(), "id", OpenTokActivity.this.getPackageName());
+               RelativeLayout layout=(RelativeLayout)findViewById(id);
+                if(layout!=null) {
+                    layout.bringToFront();
+                }else if(controlsLayoutView.size()>0) {
+                    RelativeLayout control=controlsLayoutView.get(id);
+                    control.bringToFront();
+                    control.requestLayout();
+                   // addControls( position,subscriberViewContainer, id,isMuted);
+                }
             }else if(mSubscribers.size()==2){
                 int id = getResources().getIdentifier("screen1sub" + (new Integer(position)).toString(), "id", OpenTokActivity.this.getPackageName());
                 RelativeLayout subscriberViewContainer = (RelativeLayout) findViewById(id);
+              int controlsId=getResources().getIdentifier("screen1subscriberAudio" + (new Integer(position)).toString(), "id", OpenTokActivity.this.getPackageName());
+                RelativeLayout controls=(RelativeLayout)findViewById(controlsId);
                 onDisableRemoteVideo(false,subscriberViewContainer);
+                if(controls!=null) {
+                    controls.bringToFront();
+                }else if(controlsLayoutView.size()>0)  {
+                    RelativeLayout control=controlsLayoutView.get(id);
+                    control.bringToFront();
+                    control.requestLayout();
+                    // addControls( position,subscriberViewContainer, id,isMuted);
+                }
             }else if(mSubscribers.size()==3){
                 int id = getResources().getIdentifier("screen3sub" + (new Integer(position)).toString(), "id", OpenTokActivity.this.getPackageName());
                 RelativeLayout subscriberViewContainer = (RelativeLayout) findViewById(id);
+                int controlsId=getResources().getIdentifier("screen3subscriberAudio" + (new Integer(position)).toString(), "id", OpenTokActivity.this.getPackageName());
+                RelativeLayout controls=(RelativeLayout)findViewById(controlsId);
                 onDisableRemoteVideo(false,subscriberViewContainer);
+                if(controls!=null) {
+                    controls.bringToFront();
+                }else if(controlsLayoutView.size()>0)  {
+                    RelativeLayout control=controlsLayoutView.get(id);
+                    control.bringToFront();
+                    control.requestLayout();
+                   // addControls( position,subscriberViewContainer, id,isMuted);
+                }
             }else if(mSubscribers.size()==4){
                 int id = getResources().getIdentifier("screen4sub" + (new Integer(position)).toString(), "id", OpenTokActivity.this.getPackageName());
                 RelativeLayout subscriberViewContainer = (RelativeLayout) findViewById(id);
+                int controlsId=getResources().getIdentifier("screen4subscriberAudio" + (new Integer(position)).toString(), "id", OpenTokActivity.this.getPackageName());
+                RelativeLayout controls=(RelativeLayout)findViewById(controlsId);
                 onDisableRemoteVideo(false,subscriberViewContainer);
-
+                if(controls!=null) {
+                    controls.bringToFront();
+                }else if(controlsLayoutView.size()>0)  {
+                    RelativeLayout control=controlsLayoutView.get(id);
+                    control.bringToFront();
+                    control.requestLayout();
+                    //addControls( position,subscriberViewContainer, id,isMuted);
+                }
             }
         }
     }
@@ -773,28 +793,55 @@ public class OpenTokActivity extends AppCompatActivity
     public void onVideoEnabled(SubscriberKit subscriberKit, String reason) {
         if (reason.equals("publishVideo")) {
             Subscriber subscriber = mSubscriberStreams.get(subscriberKit.getStream());
+            boolean isMuted=subscriber.getSubscribeToAudio();
             int position = mSubscribers.indexOf(subscriber);
             if (mSubscribers.size() == 1) {
                 onDisableRemoteVideo(true, subscriberViewContainer);
                 subscriberViewContainer.addView(subscriber.getView());
+                int id = getResources().getIdentifier("subscriberAudio" + (new Integer(position)).toString(), "id", OpenTokActivity.this.getPackageName());
+                addControls(position,subscriberViewContainer,id,isMuted);
+
             } else if (mSubscribers.size() == 2) {
                 int id = getResources().getIdentifier("screen1sub" + (new Integer(position)).toString(), "id", OpenTokActivity.this.getPackageName());
                 RelativeLayout subscriberViewContainer = (RelativeLayout) findViewById(id);
+                int controlsId=getResources().getIdentifier("screen1subscriberAudio" + (new Integer(position)).toString(), "id", OpenTokActivity.this.getPackageName());
                 onDisableRemoteVideo(true,subscriberViewContainer);
                 subscriberViewContainer.addView(subscriber.getView());
+                addControls(position,subscriberViewContainer,controlsId,isMuted);
             } else if (mSubscribers.size() == 3) {
                 int id = getResources().getIdentifier("screen3sub" + (new Integer(position)).toString(), "id", OpenTokActivity.this.getPackageName());
                 RelativeLayout subscriberViewContainer = (RelativeLayout) findViewById(id);
+                int controlsId=getResources().getIdentifier("screen3subscriberAudio" + (new Integer(position)).toString(), "id", OpenTokActivity.this.getPackageName());
                 onDisableRemoteVideo(true,subscriberViewContainer);
                 subscriberViewContainer.addView(subscriber.getView());
+                addControls(position,subscriberViewContainer,controlsId,isMuted);
             } else if (mSubscribers.size() == 4) {
                 int id = getResources().getIdentifier("screen4sub" + (new Integer(position)).toString(), "id", OpenTokActivity.this.getPackageName());
                 RelativeLayout subscriberViewContainer = (RelativeLayout) findViewById(id);
+                int controlsId=getResources().getIdentifier("screen4subscriberAudio" + (new Integer(position)).toString(), "id", OpenTokActivity.this.getPackageName());
                 onDisableRemoteVideo(true,subscriberViewContainer);
                 subscriberViewContainer.addView(subscriber.getView());
+                addControls(position,subscriberViewContainer,controlsId,isMuted);
 
             }
         }
+    }
+
+    private void addControls(int position,RelativeLayout subscriberViewContainer,int id,boolean isMuted) {
+        RelativeLayout audioControl=new RelativeLayout(this);
+        audioControl.setId(id);
+        RelativeLayout.LayoutParams imParams = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,ViewGroup.LayoutParams.WRAP_CONTENT);
+        imParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
+        imParams.setMargins(0,40,30,0);
+        audioControl.setLayoutParams(imParams);
+        ImageButton imgaButton = new ImageButton(this);
+        imgaButton.setImageResource(isMuted ? R.drawable.audio : R.drawable.no_audio);
+        imgaButton.setBackgroundResource(R.drawable.bckg_icon);
+        imgaButton.setOnClickListener(clickListener);
+        imgaButton.setTag(mSubscribers.get(position).getStream());
+        audioControl.addView(imgaButton);
+        subscriberViewContainer.addView(audioControl,imParams);
+        controlsLayoutView.put(id,audioControl);
     }
 
 
