@@ -23,6 +23,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
+import android.view.ViewGroup;
 
 import com.opentok.android.BaseVideoRenderer;
 import com.opentok.android.OpentokError;
@@ -77,6 +78,7 @@ public class OpenTokActivity extends AppCompatActivity
 
     private ArrayList<Subscriber> mSubscribers = new ArrayList<Subscriber>();
     private HashMap<Stream, Subscriber> mSubscriberStreams = new HashMap<Stream, Subscriber>();
+     private HashMap<Integer, RelativeLayout> controlsLayoutView = new HashMap<Integer, RelativeLayout>();
 
     private RelativeLayout mPublisherViewContainer;
     long time;
