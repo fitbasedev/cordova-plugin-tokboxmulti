@@ -116,8 +116,8 @@ public class OpenTokActivity extends AppCompatActivity
         init_info=(TextView)findViewById(R.id.init_info);
         mPublisherViewContainer.setOnTouchListener(new OnDragTouchListener(mPublisherViewContainer));
         mAlert = (TextView) findViewById(R.id.quality_warning);
-
-
+        mSessionReconnectDialog = new ProgressDialog(OpenTokActivity.this);
+ 
         //----screen2 ---------------------------
         mScreen1 = findViewById(R.id.screen1);
         screen1sub0 =(RelativeLayout)findViewById(R.id.screen1sub0);
