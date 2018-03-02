@@ -4,7 +4,7 @@
     android:layout_width="match_parent" android:layout_height="match_parent"
 
      tools:context="com.fitbase.TokBox.OpenTokActivity">
-     <RelativeLayout
+      <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/screen3sub0"
@@ -12,27 +12,27 @@
 
         <RelativeLayout
             android:id="@+id/screen3subscriberAudio0"
-            android:layout_width="@dimen/action_bar_width"
-            android:layout_height="match_parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-
+            android:layout_marginRight="10dp"
             android:layout_marginTop="10dp"
             android:visibility="gone">
 
 
             <ImageButton
                 android:id="@+id/screen3remoteAudio0"
-                android:layout_width="@dimen/icon_width"
-                android:layout_height="@dimen/icon_height"
-                android:layout_marginRight="14.1dp"
-                android:background="@drawable/bckg_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:background="@null"
                 android:src="@drawable/audio"
                 />
 
         </RelativeLayout>
     </RelativeLayout>
 
-   <RelativeLayout
+    <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
@@ -42,26 +42,26 @@
 
         <RelativeLayout
             android:id="@+id/screen3subscriberAudio1"
-            android:layout_width="@dimen/action_bar_width"
-            android:layout_height="match_parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-
+            android:layout_marginRight="10dp"
             android:layout_marginTop="10dp"
             android:visibility="gone">
 
 
             <ImageButton
                 android:id="@+id/screen3remoteAudio1"
-                android:layout_width="@dimen/icon_width"
-                android:layout_height="@dimen/icon_height"
-                android:layout_marginRight="14.1dp"
-                android:background="@drawable/bckg_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:background="@null"
                 android:src="@drawable/audio"
                 />
 
         </RelativeLayout>
     </RelativeLayout>
-     <RelativeLayout
+    <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/screen3sub0"
@@ -72,24 +72,25 @@
 
         <RelativeLayout
             android:id="@+id/screen3subscriberAudio2"
-            android:layout_width="@dimen/action_bar_width"
-            android:layout_height="match_parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-
+            android:layout_marginRight="10dp"
             android:layout_marginTop="10dp"
             android:visibility="gone">
 
 
             <ImageButton
                 android:id="@+id/screen3remoteAudio2"
-                android:layout_width="@dimen/icon_width"
-                android:layout_height="@dimen/icon_height"
-                android:layout_marginRight="14.1dp"
-                android:background="@drawable/bckg_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:background="@null"
                 android:src="@drawable/audio"
                 />
 
         </RelativeLayout>
     </RelativeLayout>
+
 
 </RelativeLayout>

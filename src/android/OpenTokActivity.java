@@ -116,7 +116,36 @@ public class OpenTokActivity extends AppCompatActivity
         init_info=(TextView)findViewById(R.id.init_info);
         mPublisherViewContainer.setOnTouchListener(new OnDragTouchListener(mPublisherViewContainer));
         mAlert = (TextView) findViewById(R.id.quality_warning);
-        mSessionReconnectDialog = new ProgressDialog(OpenTokActivity.this);
+         mSessionReconnectDialog =new ProgressDialog(this,R.style.MyAlertDialogStyle);
+        DisplayMetrics maMetrics  =getDisplay();
+
+        if(OpenTokActivity.this.getResources().getConfiguration().orientation==Configuration.ORIENTATION_LANDSCAPE){
+            mPublisherViewContainer.getLayoutParams().height=maMetrics.heightPixels/5;
+            mPublisherViewContainer.getLayoutParams().width=maMetrics.widthPixels/8;
+            mPublisherViewContainer.requestLayout();
+            tvtimer.setTextSize(maMetrics.heightPixels/100);
+
+        }else{
+            mPublisherViewContainer.getLayoutParams().height=maMetrics.heightPixels/8;
+            mPublisherViewContainer.getLayoutParams().width=maMetrics.widthPixels/5;
+            mPublisherViewContainer.requestLayout();
+            tvtimer.setTextSize(maMetrics.heightPixels/160);
+
+        }
+        RelativeLayout mainLayout=(RelativeLayout)findViewById(R.id.activity_main);
+        mainLayout.setSoundEffectsEnabled(false);
+        mainLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(llcontrols.getVisibility()==View.VISIBLE){
+                    llcontrols.setVisibility(View.GONE);
+                }else {
+                    llcontrols.setVisibility(View.VISIBLE);
+                    hidehandler.removeCallbacks(hideControllerThread);
+                    hideControllers();
+                }
+            }
+        });
  
         //----screen2 ---------------------------
         mScreen1 = findViewById(R.id.screen1);
@@ -291,17 +320,7 @@ public class OpenTokActivity extends AppCompatActivity
         hideControllers();
     }
 
-    @Override
-    public void onUserInteraction() {
-        super.onUserInteraction();
-
-        if (llcontrols.getVisibility() == View.VISIBLE) {
-            hidehandler.removeCallbacks(hideControllerThread);
-            hideControllers();
-        } else {
-            showControllers();
-        }
-    }
+    
 
 
     @Override
@@ -394,7 +413,7 @@ public class OpenTokActivity extends AppCompatActivity
         if (EasyPermissions.hasPermissions(this, perms)) {
             mSession = new Session.Builder(OpenTokActivity.this, apiKey, sessionId).build();
             mSession.setSessionListener(this);
-            mProgressDialog = new ProgressDialog(this);
+           mProgressDialog = new ProgressDialog(this,R.style.MyAlertDialogStyle);
             mProgressDialog.setCanceledOnTouchOutside(false);
             mProgressDialog.setTitle("Please wait");
             mProgressDialog.setMessage("Connecting...");
@@ -507,6 +526,15 @@ public class OpenTokActivity extends AppCompatActivity
 
 
         }
+         if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            mPublisherViewContainer.getLayoutParams().height=maMetrics.heightPixels/5;
+            mPublisherViewContainer.getLayoutParams().width=maMetrics.widthPixels/8;
+            mPublisherViewContainer.requestLayout();
+        } else if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT){
+            mPublisherViewContainer.getLayoutParams().height=maMetrics.heightPixels/8;
+            mPublisherViewContainer.getLayoutParams().width=maMetrics.widthPixels/5;
+            mPublisherViewContainer.requestLayout();
+        }
 
     }
 
@@ -524,6 +552,7 @@ public class OpenTokActivity extends AppCompatActivity
             subscriberViewContainer.getLayoutParams().height=maMetrics.heightPixels;
             subscriberViewContainer.getLayoutParams().width=maMetrics.widthPixels;
             subscriberViewContainer.requestLayout();
+            tvtimer.bringToFront();
 
         }else if(mSubscribers.size()==2){
             mScreen1.setVisibility(View.VISIBLE);
@@ -866,10 +895,6 @@ public class OpenTokActivity extends AppCompatActivity
         }
         else {
             mSessionReconnectDialog.dismiss();
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setMessage("Session has been reconnected")
-                    .setPositiveButton(android.R.string.ok, null);
-            builder.create();
             builder.show();
         }
     }

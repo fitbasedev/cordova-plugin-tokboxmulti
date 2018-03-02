@@ -4,7 +4,7 @@
     android:layout_width="match_parent" android:layout_height="match_parent"
 
      tools:context="com.fitbase.TokBox.OpenTokActivity">
-    <RelativeLayout
+     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/screen4sub0"
@@ -12,20 +12,20 @@
 
         <RelativeLayout
             android:id="@+id/screen4subscriberAudio0"
-            android:layout_width="@dimen/action_bar_width"
-            android:layout_height="match_parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-
+            android:layout_marginRight="10dp"
             android:layout_marginTop="10dp"
             android:visibility="gone">
 
 
             <ImageButton
                 android:id="@+id/screen4remoteAudio0"
-                android:layout_width="@dimen/icon_width"
-                android:layout_height="@dimen/icon_height"
-                android:layout_marginRight="14.1dp"
-                android:background="@drawable/bckg_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:background="@null"
                 android:src="@drawable/audio"
                 />
 
@@ -42,49 +42,46 @@
 
         <RelativeLayout
             android:id="@+id/screen4subscriberAudio1"
-            android:layout_width="@dimen/action_bar_width"
-            android:layout_height="match_parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-
+            android:layout_marginRight="10dp"
             android:layout_marginTop="10dp"
             android:visibility="gone">
 
 
             <ImageButton
                 android:id="@+id/screen4remoteAudio1"
-                android:layout_width="@dimen/icon_width"
-                android:layout_height="@dimen/icon_height"
-                android:layout_marginRight="14.1dp"
-                android:background="@drawable/bckg_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@null"
                 android:src="@drawable/audio"
                 />
 
         </RelativeLayout>
     </RelativeLayout>
-      <RelativeLayout
+    <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
         android:id="@+id/screen4sub2"
         android:layout_below="@+id/screen4sub0"
         >
 
         <RelativeLayout
             android:id="@+id/screen4subscriberAudio2"
-            android:layout_width="@dimen/action_bar_width"
-            android:layout_height="match_parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:layout_marginRight="5dp"
+            android:layout_marginRight="10dp"
             android:layout_marginTop="10dp"
             android:visibility="gone">
 
 
             <ImageButton
                 android:id="@+id/screen4remoteAudio2"
-                android:layout_width="@dimen/icon_width"
-                android:layout_height="@dimen/icon_height"
-                android:layout_marginRight="14.1dp"
-                android:background="@drawable/bckg_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@null"
                 android:src="@drawable/audio"
                 />
 
@@ -101,20 +98,19 @@
 
         <RelativeLayout
             android:id="@+id/screen4subscriberAudio3"
-            android:layout_width="@dimen/action_bar_width"
-            android:layout_height="match_parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-
+            android:layout_marginRight="10dp"
             android:layout_marginTop="10dp"
             android:visibility="gone">
 
 
             <ImageButton
                 android:id="@+id/screen4remoteAudio3"
-                android:layout_width="@dimen/icon_width"
-                android:layout_height="@dimen/icon_height"
-                android:layout_marginRight="14.1dp"
-                android:background="@drawable/bckg_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@null"
                 android:src="@drawable/audio"
                 />
 
