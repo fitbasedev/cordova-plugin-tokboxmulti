@@ -895,7 +895,7 @@ public class OpenTokActivity extends AppCompatActivity
         }
         else {
             mSessionReconnectDialog.dismiss();
-            builder.show();
+          
         }
     }
     public void showNetworkWarning(){
