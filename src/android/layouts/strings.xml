@@ -10,4 +10,5 @@
     <string name="setting">Settings</string>
   <string name="initialmessage">Waiting for user to join..</string>
     <string name="cancel">Cancel</string>
+      <string name="muteall">Mute all</string>
 </resources>

@@ -11,8 +11,11 @@ import com.opentok.android.Stream;
 import com.opentok.android.Subscriber;
 import com.opentok.android.VideoUtils;
 
+/**
+ * Created by Anshul Nigam .
+ *  
+ */
 
-/*
 public class Participant extends Subscriber {
 
     private static final String LOGTAG = "Participant";
@@ -43,71 +46,10 @@ public class Participant extends Subscriber {
         return mSubscriberVideoOnly;
     }
 
-    @Override
-    public void onVideoDisabled(String reason) {
-        super.onVideoDisabled(reason);
-        Log.i(LOGTAG, "Video is disabled for the subscriber. Reason: " + reason);
-        if (reason.equals("quality")) {
-            mSubscriberVideoOnly = true;
-          mActivity.showNetworkWarning();
-        }else if(reason.equals("publishVideo")){
-          mSubscriberVideoOnly = true;
-        }
-    }
 
-    @Override
-    public void onVideoEnabled(String reason) {
-        super.onVideoEnabled(reason);
-        Log.i(LOGTAG, "Subscriber is enabled:" + reason);
 
-        if (reason.equals("quality")) {
 
-            mSubscriberVideoOnly = false;
-        }else if(reason.equals("publishVideo")){
-          mSubscriberVideoOnly = false;
-        }
-    }
 
-    @Override
-    public void onVideoDisableWarning() {
-        Log.i(LOGTAG,
-                "Video may be disabled soon due to network quality degradation. Add UI handling here.");
-    }
 
-    @Override
-    public void onVideoDisableWarningLifted() {
-        Log.i(LOGTAG,
-                "Video may no longer be disabled as stream quality improved. Add UI handling here.");
-    }
 
-    @Override
-    protected void onVideoDataReceived() {
-        super.onVideoDataReceived();
-        Log.i(LOGTAG, "First frame received");
-        mActivity.updateLoadingSub();
-    }
-
-    @Override
-    protected void onError(OpentokError error) {
-        super.onError(error);
-        showErrorDialog(error);
-    }
-
-    private void showErrorDialog(OpentokError error) {
-        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(mActivity);
-
-        alertDialogBuilder.setTitle("error");
-        alertDialogBuilder
-                .setMessage(error.getMessage())
-                .setCancelable(false)
-                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        mActivity.finish();
-                    }
-                });
-        AlertDialog alertDialog = alertDialogBuilder.create();
-
-        alertDialog.show();
-    }
-
-}*/
+}

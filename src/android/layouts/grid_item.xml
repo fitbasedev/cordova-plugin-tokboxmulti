@@ -1,0 +1,61 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/itemmain"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:gravity="center_horizontal"
+    android:layout_margin="1dp"
+
+    >
+
+<RelativeLayout
+    android:id="@+id/itemView"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+
+    >
+
+    <!--<RelativeLayout
+        android:id="@+id/remoteControls"
+        android:layout_width="@dimen/action_bar_width"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:visibility="gone">
+
+
+
+        <ImageButton
+            android:id="@+id/remoteAudio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_marginTop="25dp"
+            android:background="@null"
+            android:src="@drawable/audio"
+            android:onClick="onRemoteAudioChanged"/>
+
+    </RelativeLayout>-->
+
+    <RelativeLayout
+        android:id="@+id/user_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/userback"
+        android:elevation="10dp"
+        android:layout_centerInParent="true"
+        android:visibility="gone" >
+
+        <TextView
+            android:id="@+id/avatar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:gravity="center_vertical|center_horizontal"
+
+             />
+    </RelativeLayout>
+
+</RelativeLayout>
+    </RelativeLayout>
