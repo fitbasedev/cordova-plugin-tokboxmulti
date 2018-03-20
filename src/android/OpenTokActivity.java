@@ -584,6 +584,7 @@ public class OpenTokActivity extends AppCompatActivity
 
         public void run() {
             llcontrols.setVisibility(View.GONE);
+             toolbar.setVisibility(View.GONE);
         }
     };
 
