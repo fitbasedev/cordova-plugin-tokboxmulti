@@ -318,7 +318,7 @@ public class OpenTokActivity extends AppCompatActivity
             Date date = sdf.parse(startdate.split("\\.")[0]);
             SimpleDateFormat writeDate = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss",Locale.ENGLISH);
             writeDate.setTimeZone(TimeZone.getTimeZone("GMT+05:30"));
-            String s = writeDate.format(new Date());
+            String s = writeDate.format(date);
             Date date1 = writeDate.parse(s);
             Calendar c = Calendar.getInstance();
             long millis=(date1.getTime()+(Long.parseLong(duration)*60*1000))- c.getTimeInMillis();
