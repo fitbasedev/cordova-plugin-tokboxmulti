@@ -1044,21 +1044,21 @@ public class OpenTokActivity extends AppCompatActivity
                 subscriberViewContainer.removeView(avatar);
         }else if(mSubscribers.size()==2){
             for (int i=0;i<mSubscribers.size();i++){
-                int id = getResources().getIdentifier("screen1subscriberAudio" + (new Integer(i)).toString(), "id", MainActivity.this.getPackageName());
+                int id = getResources().getIdentifier("screen1subscriberAudio" + (new Integer(i)).toString(), "id", OpenTokActivity.this.getPackageName());
                 RelativeLayout remoteAudio = (RelativeLayout) findViewById(id);
                 remoteAudio.setVisibility(View.GONE);
             }
             mScreen1.setVisibility(View.GONE);
         }else if(mSubscribers.size()==3){
             for (int i=0;i<mSubscribers.size();i++){
-                int id = getResources().getIdentifier("screen3subscriberAudio" + (new Integer(i)).toString(), "id", MainActivity.this.getPackageName());
+                int id = getResources().getIdentifier("screen3subscriberAudio" + (new Integer(i)).toString(), "id", OpenTokActivity.this.getPackageName());
                 RelativeLayout remoteAudio = (RelativeLayout) findViewById(id);
                 remoteAudio.setVisibility(View.GONE);
             }
             mScreen3.setVisibility(View.GONE);
         }else if(mSubscribers.size()==4){
             for (int i=0;i<mSubscribers.size();i++){
-                int id = getResources().getIdentifier("screen4subscriberAudio" + (new Integer(i)).toString(), "id", MainActivity.this.getPackageName());
+                int id = getResources().getIdentifier("screen4subscriberAudio" + (new Integer(i)).toString(), "id", OpenTokActivity.this.getPackageName());
                 RelativeLayout remoteAudio = (RelativeLayout)  findViewById(id);
                 remoteAudio.setVisibility(View.GONE);
 
