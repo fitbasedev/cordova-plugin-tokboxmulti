@@ -163,6 +163,7 @@ public class OpenTokActivity extends AppCompatActivity
     private  Toolbar toolbar;
     private String mCurrentRemote;
     private ProgressDialog mProgressDialog,mSessionReconnectDialog;
+    private int muteCount=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Log.d(TAG, "onCreate");
@@ -612,7 +613,8 @@ public class OpenTokActivity extends AppCompatActivity
       }else{
           subscriber.setSubscribeToAudio(true);
             ((ImageButton)view).setImageResource(R.drawable.audio);
-}
+           }
+            updateToolbarOption();
 }
     };
 
@@ -778,7 +780,7 @@ public class OpenTokActivity extends AppCompatActivity
            updateView();
            calculateLayout();
        }
-
+        updateToolbarOption();
         mParticipantsAdapter.notifyDataSetChanged();
 
     }
@@ -977,6 +979,7 @@ public class OpenTokActivity extends AppCompatActivity
                 participant.setSubscribeToAudio(true);
                 ((ImageButton)view).setImageResource(R.drawable.audio);
             }
+             updateToolbarOption();
         }
     };
 
@@ -1281,6 +1284,21 @@ public class OpenTokActivity extends AppCompatActivity
             }
         }, 7000);
     }
-
+  public void updateToolbarOption(){
+        muteCount=0;
+        for (int subscriber=0;subscriber<=mSubscribers.size()-1;subscriber++){
+            boolean unMute=mSubscribers.get(subscriber).getSubscribeToAudio();
+            if(unMute){
+                muteCount--;
+            }else{
+                muteCount++;
+            }
+        }
+        if(muteCount==mSubscribers.size()){
+            ((MenuItem)menu.findItem(R.id.muteall)).setChecked(true);
+        }else{
+            ((MenuItem)menu.findItem(R.id.muteall)).setChecked(false);
+        }
+    }
 
 }
