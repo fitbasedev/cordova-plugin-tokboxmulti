@@ -91,6 +91,7 @@ public class ParticipantsAdapter extends RecyclerView.Adapter<ParticipantsAdapte
                 parent.removeView(participant.getView());
             }
             mActivity.getGalleryMainView().addView(participant.getView(),layoutParams);
+             ((GLSurfaceView) participant.getView()).setZOrderOnTop(false);
             mActivity.getGalleryMainView().setTag(position);
             mActivity.getGalleryaudio().setVisibility(View.VISIBLE);
             mActivity.getGalleryaudio().setOnClickListener(mActivity.muteSubscriberAudio);
@@ -200,6 +201,7 @@ public class ParticipantsAdapter extends RecyclerView.Adapter<ParticipantsAdapte
                     if (galleryParent != null) {
                         Lastparent.removeView(mParticipantsList.get(id).getView());
                         galleryParent.addView( mParticipantsList.get(id).getView(),params);
+                        ((GLSurfaceView) mParticipantsList.get(id).getView()).setZOrderOnTop(true);
                         galleryParent.requestLayout();
                     }
                     mActivity.getGalleryMainView().removeAllViews();

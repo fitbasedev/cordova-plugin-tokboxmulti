@@ -994,12 +994,14 @@ public class OpenTokActivity extends AppCompatActivity
         if (subscriber == null) {
             return;
         }
-
+        ViewGroup viewGroup=(ViewGroup)subscriber.getView().getParent();
+        if(viewGroup!=null){
+            viewGroup.removeView(subscriber.getView());
+        }
         int position = mParticipantsList.indexOf(subscriber);
         mSubscribers.remove(subscriber);
         mParticipantsList.remove(subscriber);
         mSubscriberStreams.remove(stream);
-        mParticipantsAdapter.notifyItemRemoved(position);
         if(mSubscribers.size()<2 && !isRecylerViewPresent){
             menu.findItem(R.id.gallery).setVisible(false);
         }
@@ -1037,31 +1039,28 @@ public class OpenTokActivity extends AppCompatActivity
 
       private void clearView() {
         if(mSubscribers.size()==1){
-            subscriberViewContainer.removeView(mSubscribers.get(0).getView());
             subscriberAudio0.setVisibility(View.GONE);
             if(avatar!=null)
                 subscriberViewContainer.removeView(avatar);
         }else if(mSubscribers.size()==2){
             for (int i=0;i<mSubscribers.size();i++){
-                int id = getResources().getIdentifier("screen1sub" + (new Integer(i)).toString(), "id", OpenTokActivity.this.getPackageName());
-                RelativeLayout subscriberViewContainer = (RelativeLayout) findViewById(id);
-                subscriberViewContainer.removeView(mSubscribers.get(i).getView());
-
+                int id = getResources().getIdentifier("screen1subscriberAudio" + (new Integer(i)).toString(), "id", MainActivity.this.getPackageName());
+                RelativeLayout remoteAudio = (RelativeLayout) findViewById(id);
+                remoteAudio.setVisibility(View.GONE);
             }
             mScreen1.setVisibility(View.GONE);
         }else if(mSubscribers.size()==3){
             for (int i=0;i<mSubscribers.size();i++){
-                int id = getResources().getIdentifier("screen3sub" + (new Integer(i)).toString(), "id", OpenTokActivity.this.getPackageName());
-                RelativeLayout subscriberViewContainer = (RelativeLayout) findViewById(id);
-                subscriberViewContainer.removeView(mSubscribers.get(i).getView());
-
+                int id = getResources().getIdentifier("screen3subscriberAudio" + (new Integer(i)).toString(), "id", MainActivity.this.getPackageName());
+                RelativeLayout remoteAudio = (RelativeLayout) findViewById(id);
+                remoteAudio.setVisibility(View.GONE);
             }
             mScreen3.setVisibility(View.GONE);
         }else if(mSubscribers.size()==4){
             for (int i=0;i<mSubscribers.size();i++){
-                int id = getResources().getIdentifier("screen4sub" + (new Integer(i)).toString(), "id", OpenTokActivity.this.getPackageName());
-                RelativeLayout subscriberViewContainer = (RelativeLayout) findViewById(id);
-                subscriberViewContainer.removeView(mSubscribers.get(i).getView());
+                int id = getResources().getIdentifier("screen4subscriberAudio" + (new Integer(i)).toString(), "id", MainActivity.this.getPackageName());
+                RelativeLayout remoteAudio = (RelativeLayout)  findViewById(id);
+                remoteAudio.setVisibility(View.GONE);
 
             }
             mScreen4.setVisibility(View.GONE);
