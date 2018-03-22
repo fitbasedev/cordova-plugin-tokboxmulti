@@ -10,14 +10,12 @@
         android:id="@+id/grid"
         android:icon="@drawable/ic_border_all_white_24dp"
         android:orderInCategory="100"
-        android:title="Search"
         app:showAsAction="ifRoom"
         android:visible="false"/>
     <item
         android:id="@+id/gallery"
         android:icon="@mipmap/icon_gallery"
         android:orderInCategory="100"
-        android:title="Search"
         app:showAsAction="ifRoom"
         android:visible="false"/>
     <item
