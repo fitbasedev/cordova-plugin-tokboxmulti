@@ -382,7 +382,9 @@ public class OpenTokActivity extends AppCompatActivity
          ViewContainer.addView(avatar,layoutParams);
         } else {
 
-           ViewContainer.removeAllViews();
+           //ViewContainer.removeAllViews();
+             if(avatar.getParent()!=null)
+                ((ViewGroup)avatar.getParent()).removeView(avatar);
         }
     }
 
@@ -1198,6 +1200,10 @@ public class OpenTokActivity extends AppCompatActivity
                return;
             }
             Subscriber subscriber = mSubscriberStreams.get(subscriberKit.getStream());
+            ViewGroup viewGroup=(ViewGroup) subscriber.getView().getParent();
+            if(viewGroup!=null){
+                viewGroup.removeView(subscriber.getView());
+            }
             boolean isMuted=subscriber.getSubscribeToAudio();
             int position = mSubscribers.indexOf(subscriber);
             if (mSubscribers.size() == 1) {
