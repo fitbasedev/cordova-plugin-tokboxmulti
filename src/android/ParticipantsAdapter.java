@@ -125,6 +125,10 @@ public class ParticipantsAdapter extends RecyclerView.Adapter<ParticipantsAdapte
            if(parentUsr!=null){
                parentUsr.removeView(holder.audiOnlyView);
            }
+            ViewGroup parent = (ViewGroup) participant.getView().getParent();
+           if (parent != null) {
+               parent.removeView(participant.getView());
+           }
            holder.container.addView( holder.audiOnlyView,params);
         } else if(position!=Util.selectedposition){
             holder.audiOnlyView.setVisibility(View.GONE);
