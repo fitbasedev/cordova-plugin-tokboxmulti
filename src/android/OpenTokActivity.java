@@ -1247,7 +1247,6 @@ public class OpenTokActivity extends AppCompatActivity
         audioControl.setLayoutParams(imParams);
         ImageButton imgaButton = new ImageButton(this);
         imgaButton.setImageResource(isMuted ? R.drawable.audio : R.drawable.no_audio);
-        imgaButton.setBackgroundResource(R.drawable.bckg_icon);
         imgaButton.setOnClickListener(clickListener);
         imgaButton.setTag(mSubscribers.get(position).getStream());
         audioControl.addView(imgaButton);
