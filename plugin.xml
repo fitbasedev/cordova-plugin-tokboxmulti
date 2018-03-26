@@ -136,7 +136,6 @@
 		<resource-file src="src/android/images/drawable-xxxhdpi/video_icon.png" target="res/drawable-xxxhdpi/video_icon.png"/>
 		<resource-file src="src/android/images/drawable-xxxhdpi/audio.png" target="res/drawable-xxxhdpi/audio.png"/>
 		<resource-file src="src/android/images/drawable-xxxhdpi/no_audio.png" target="res/drawable-xxxhdpi/no_audio.png"/>
-		<resource-file src="src/android/images/mipmap-xxxhdpi/icon_gallery.png" target="res/mipmap-xxxhdpi/icon_gallery.png"/>
 		<resource-file src="src/android/images/drawable-xxxhdpi/ic_border_all_white_24dp.png" target="res/drawable-xxxhdpi/ic_border_all_white_24dp.png"/>
 		<resource-file src="src/android/images/mipmap-ldpi/avatar.png" target="res/mipmap/avatar.png"/>
     </platform>
