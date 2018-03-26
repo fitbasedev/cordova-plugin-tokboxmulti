@@ -383,7 +383,7 @@ public class OpenTokActivity extends AppCompatActivity
         } else {
 
            //ViewContainer.removeAllViews();
-             if(avatar.getParent()!=null)
+             if(avatar!=null && avatar.getParent()!=null)
                 ((ViewGroup)avatar.getParent()).removeView(avatar);
         }
     }
@@ -1210,7 +1210,9 @@ public class OpenTokActivity extends AppCompatActivity
                 onDisableRemoteVideo(true, subscriberViewContainer);
                 subscriberViewContainer.addView(subscriber.getView());
                 int id = getResources().getIdentifier("subscriberAudio" + (new Integer(position)).toString(), "id", OpenTokActivity.this.getPackageName());
-                addControls(position,subscriberViewContainer,id,isMuted);
+                RelativeLayout controls=(RelativeLayout)findViewById(id);
+                controls.bringToFront();
+               // addControls(position,subscriberViewContainer,id,isMuted);
 
             } else if (mSubscribers.size() == 2) {
                 int id = getResources().getIdentifier("screen1sub" + (new Integer(position)).toString(), "id", OpenTokActivity.this.getPackageName());
@@ -1218,21 +1220,27 @@ public class OpenTokActivity extends AppCompatActivity
                 int controlsId=getResources().getIdentifier("screen1subscriberAudio" + (new Integer(position)).toString(), "id", OpenTokActivity.this.getPackageName());
                 onDisableRemoteVideo(true,subscriberViewContainer);
                 subscriberViewContainer.addView(subscriber.getView());
-                addControls(position,subscriberViewContainer,controlsId,isMuted);
+                 RelativeLayout controls=(RelativeLayout)findViewById(controlsId);
+                controls.bringToFront();
+                //addControls(position,subscriberViewContainer,controlsId,isMuted);
             } else if (mSubscribers.size() == 3) {
                 int id = getResources().getIdentifier("screen3sub" + (new Integer(position)).toString(), "id", OpenTokActivity.this.getPackageName());
                 RelativeLayout subscriberViewContainer = (RelativeLayout) findViewById(id);
                 int controlsId=getResources().getIdentifier("screen3subscriberAudio" + (new Integer(position)).toString(), "id", OpenTokActivity.this.getPackageName());
                 onDisableRemoteVideo(true,subscriberViewContainer);
                 subscriberViewContainer.addView(subscriber.getView());
-                addControls(position,subscriberViewContainer,controlsId,isMuted);
+                RelativeLayout controls=(RelativeLayout)findViewById(controlsId);
+                controls.bringToFront();
+                //addControls(position,subscriberViewContainer,controlsId,isMuted);
             } else if (mSubscribers.size() == 4) {
                 int id = getResources().getIdentifier("screen4sub" + (new Integer(position)).toString(), "id", OpenTokActivity.this.getPackageName());
                 RelativeLayout subscriberViewContainer = (RelativeLayout) findViewById(id);
                 int controlsId=getResources().getIdentifier("screen4subscriberAudio" + (new Integer(position)).toString(), "id", OpenTokActivity.this.getPackageName());
                 onDisableRemoteVideo(true,subscriberViewContainer);
                 subscriberViewContainer.addView(subscriber.getView());
-                addControls(position,subscriberViewContainer,controlsId,isMuted);
+               RelativeLayout controls=(RelativeLayout)findViewById(controlsId);
+                controls.bringToFront();
+               //addControls(position,subscriberViewContainer,controlsId,isMuted);
 
             }
         }
