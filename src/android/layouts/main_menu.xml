@@ -14,7 +14,7 @@
         android:visible="false"/>
     <item
         android:id="@+id/gallery"
-        android:icon="@mipmap/icon_gallery"
+      android:icon="@drawable/gallery_icon"
         android:orderInCategory="100"
         app:showAsAction="ifRoom"
         android:visible="false"/>
