@@ -1036,6 +1036,7 @@ public class OpenTokActivity extends AppCompatActivity
         if(!isRecylerViewPresent) {
             calculateLayout();
         }
+         updateToolbarOption();
         mParticipantsAdapter.notifyDataSetChanged();
     }
 
