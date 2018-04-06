@@ -202,8 +202,10 @@ public class ParticipantsAdapter extends RecyclerView.Adapter<ParticipantsAdapte
                         parent.addView( ParticipantViewHolder.this.audiOnlyView,params);
                     }
                     mActivity.getGalleryMainView().removeView(mParticipantsList.get(id).getView());
-                    if (galleryParent != null) {
+                     if(Lastparent!=null){
                         Lastparent.removeView(mParticipantsList.get(id).getView());
+                    }
+                    if (galleryParent != null) {
                         galleryParent.addView( mParticipantsList.get(id).getView(),params);
                        // scroll hideing element ((GLSurfaceView) mParticipantsList.get(id).getView()).setZOrderOnTop(true);
                         galleryParent.requestLayout();
