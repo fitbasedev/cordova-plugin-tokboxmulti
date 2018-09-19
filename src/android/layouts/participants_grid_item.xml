@@ -1,0 +1,92 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/itemView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clickable="false"
+    android:gravity="center_horizontal"
+
+>
+
+
+
+  <RelativeLayout
+      android:id="@+id/audioOnlyView"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_alignParentTop="true"
+
+  >
+    <TextView
+        android:id="@+id/usernamesm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left|top"
+        android:layout_marginTop="3dp"
+        android:layout_marginLeft="5dp"
+        android:scaleType="fitXY"
+        android:textSize="15dp"
+        android:textColor="@color/username"
+        android:text="anshul"
+
+
+    />
+    <ImageView
+        android:id="@+id/avatar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/_2sdp"
+        android:layout_centerInParent="true"
+        android:layout_gravity="center"
+        android:scaleType="fitXY"
+        android:src="@drawable/mute_subscriber_video"
+
+    />
+    <TextView
+        android:id="@+id/userName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="@dimen/_3sdp"
+
+        android:layout_centerInParent="true"
+        android:layout_below="@+id/avatar"
+        android:text="anshul"
+        android:gravity="center_vertical|center_horizontal"
+        android:visibility="gone"
+
+    />
+
+  </RelativeLayout>
+
+  <RelativeLayout
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_alignParentBottom="true"
+      android:layout_alignParentEnd="true"
+      android:background="@drawable/recycler_mute_icon_bckg"
+      android:elevation="12dp"
+      android:id="@+id/muteIcon"
+      android:layout_alignParentRight="true">
+    <ImageView
+        android:id="@+id/audio_mic"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_margin="@dimen/_3sdp"
+        android:scaleType="fitXY"
+        android:src="@drawable/mic_green_icon"
+        android:onClick="onRemoteAudioChanged"
+    />
+  </RelativeLayout>
+  <RelativeLayout
+      android:background="@drawable/participant_border_white"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:adjustViewBounds="true"
+      android:elevation="10dp"
+      android:id="@+id/border"
+  >
+
+  </RelativeLayout>
+
+</RelativeLayout>

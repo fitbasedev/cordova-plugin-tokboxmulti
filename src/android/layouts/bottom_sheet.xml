@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="match_parent"
+  android:layout_height="180dp"
+  android:orientation="vertical"
+  android:id="@+id/parentClass">
+
+
+  <LinearLayout
+    android:id="@+id/linearLayoutId"
+    android:layout_width="match_parent"
+    android:layout_height="60dp"
+    android:clickable="true"
+    android:focusable="true"
+    android:orientation="horizontal"
+    android:padding="16dp"
+    >
+
+    <ImageView
+      android:id="@+id/tv_muteImage"
+      android:layout_height="match_parent"
+      android:layout_width="wrap_content"
+      android:src="@drawable/mute_mic"
+      />
+
+    <TextView
+      android:id="@+id/muteText"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginLeft="16dp"
+      android:layout_gravity="center"
+      android:text="@string/mute_all"
+      android:textColor="@color/mdtp_transparent_black"
+      android:textSize="16sp"
+      />
+  </LinearLayout>
+  <LinearLayout
+    android:id="@+id/tv_participants"
+    android:layout_width="match_parent"
+    android:layout_height="60dp"
+    android:clickable="true"
+    android:focusable="true"
+    android:orientation="horizontal"
+    android:foreground="?android:attr/selectableItemBackground"
+    android:padding="16dp">
+    <ImageView
+      android:layout_width="wrap_content"
+      android:layout_height="match_parent"
+      android:src="@drawable/participants"
+      />
+    <TextView
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_gravity="center"
+      android:layout_marginLeft="16dp"
+      android:text="Participants"
+      android:textColor="@color/mdtp_transparent_black"/>
+    <!-- <TextView
+          android:id="@+id/tv_participants"
+          android:layout_width="match_parent"
+          android:layout_height="48dp"
+          android:layout_marginEnd="@dimen/dp_16"
+          android:layout_marginStart="@dimen/dp_16"
+         android:layout_marginBottom="16dp"
+          android:drawablePadding="28dp"
+          android:drawableStart="@drawable/participants"
+          android:gravity="start|center_vertical"
+          android:text="Participants"
+          android:textColor="@color/mdtp_transparent_black"
+          android:textSize="16sp" />-->
+  </LinearLayout>
+
+
+</LinearLayout>
+

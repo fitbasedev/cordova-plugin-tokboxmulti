@@ -11,4 +11,7 @@
   <string name="initialmessage">Waiting for user to join..</string>
     <string name="cancel">Cancel</string>
       <string name="muteall">Mute all</string>
+    <string name="swipecam">Swipe Camera</string>
+    <string name="mute_all">Mute All</string>
+    <string name="uniqueId">abchjd7klksls#</string>
 </resources>

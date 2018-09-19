@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/mainview"
+    android:background="@drawable/gradient_grey_audionly"
+    tools:context="com.fitbase.TokBox.LiveVideoActivity">
+  <android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:background="@drawable/toolbar_gradient"
+      android:layout_alignParentTop="true"
+      android:elevation="4dp"
+      app:theme="@style/ToolBarStyle"
+      app:titleTextAppearance="@style/Toolbar.TitleText"
+      app:popupTheme="@style/AppTheme.PopupOverlay"
+      android:id="@+id/live_toolbar" >
+  </android.support.v7.widget.Toolbar>
+  <RelativeLayout
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:id="@+id/mainsub">
+    <RelativeLayout
+        android:id="@+id/mainviewgallery"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+      <ImageView
+          android:id="@+id/mainAvatar"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_centerHorizontal="true"
+          android:layout_marginBottom="@dimen/_2sdp"
+          android:layout_centerInParent="true"
+          android:layout_gravity="center"
+          android:scaleType="fitXY"
+          android:src="@drawable/mute_subscriber_video"></ImageView>
+      <TextView
+          android:id="@+id/maingalleryuserName"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_centerHorizontal="true"
+          android:layout_margin="@dimen/_3sdp"
+          android:layout_centerInParent="true"
+          android:layout_below="@+id/mainAvatar"
+          android:text="anshul"
+          android:gravity="center_vertical|center_horizontal"
+
+
+      />
+      />
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/recyclercontainer">
+      <android.support.v7.widget.RecyclerView
+          android:id="@+id/grid_container"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+      />
+    </RelativeLayout>
+
+  </RelativeLayout>
+
+  <RelativeLayout
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+  >
+    <RelativeLayout
+        android:id="@+id/publisher_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+    >
+      <!--  <RelativeLayout
+            android:id="@+id/selfaudioonlyview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerInParent="true"
+            android:visibility="gone"
+            >
+
+            <ImageView
+                android:id="@+id/myavatar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:scaleType="fitXY"
+                android:src="@drawable/mute_subscriber_video"
+                />
+        </RelativeLayout>-->
+
+    </RelativeLayout>
+
+
+  </RelativeLayout>
+
+
+  <RelativeLayout
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:layout_above="@+id/actionbar_fragment_container"
+      android:id="@+id/parent_publisher"
+
+
+  >
+    <RelativeLayout
+        android:id="@+id/smallviewlocal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:animateLayoutChanges="true"
+        android:visibility="gone"
+    >
+      <ImageView
+          android:id="@+id/pubavatar"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_centerHorizontal="true"
+          android:layout_centerInParent="true"
+          android:layout_gravity="center"
+          android:scaleType="fitXY"
+          android:src="@drawable/mute_subscriber_video"
+
+      />
+    </RelativeLayout>
+
+  </RelativeLayout>
+
+
+  <RelativeLayout
+      android:id="@+id/actionbar_fragment_container"
+      android:layout_width="match_parent"
+      android:layout_height="@dimen/action_bar_height"
+      android:layout_alignParentBottom="true"
+      android:layout_centerHorizontal="true"
+      android:visibility="visible"></RelativeLayout>
+
+
+
+
+
+
+  <TextView
+      android:id="@+id/textmsg"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_centerInParent="true"
+      android:text="Waiting for Trainee to Join."
+      android:background="@drawable/stabletoaster"
+      android:layout_margin="10dp"
+      android:gravity="center"
+      android:textSize="16dp"
+      android:textColor="#fff"
+      android:padding="10dp"/>
+
+</RelativeLayout>
+

@@ -14,4 +14,11 @@
     <dimen name="alert_text">14sp</dimen>
     <dimen name="action_bar_height">71dp</dimen>
     <dimen name="action_bar_width">71dp</dimen>
+    <dimen name="_3sdp">10.80dp</dimen>
+    <dimen name="_6sdp">21.60dp</dimen>
+    <dimen name="_10sdp">36.00dp</dimen>
+    <dimen name="_2sdp">7.20dp</dimen>
+    <dimen name="_8sdp">28.80dp</dimen>
+    <dimen name="_7sdp">25.20dp</dimen>
+    <dimen name="txt_size15">15sp</dimen>
 </resources>
