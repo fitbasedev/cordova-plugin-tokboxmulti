@@ -1,59 +1,55 @@
 package com.fitbase.TokBox;
 
-import android.util.Size;
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.util.Log;
 
+import com.opentok.android.BaseVideoRenderer;
+import com.opentok.android.OpentokError;
+import com.opentok.android.Stream;
 import com.opentok.android.Subscriber;
+import com.opentok.android.VideoUtils;
 
 /**
- * Created by Priya on 9/10/2018.
+ * Created by Anshul Nigam .
+ *  
  */
 
-public class Participant  {
-  public enum Type {
-    LOCAL,
-    REMOTE
-  }
+public class Participant extends Subscriber {
 
-  public Type mType;
-  public String id = null;
-  public Subscriber mStatus;
-  private Size mContainer;
+    private static final String LOGTAG = "Participant";
 
-  public Participant(Type type, Subscriber status, Size containerSize) {
-    this.mType = type;
-    this.mStatus = status;
-    this.mContainer = containerSize;
-  }
+    protected static final VideoUtils.Size VGA_VIDEO_RESOLUTION = new VideoUtils.Size(640, 480);
+    protected static final VideoUtils.Size QVGA_VIDEO_RESOLUTION = new VideoUtils.Size(320, 240);
+  protected static final VideoUtils.Size High_VIDEO_RESOLUTION = new VideoUtils.Size(1280,720);
+    protected static final int MAX_FPS = 30;
+    protected static final int MID_FPS = 15;
 
-  public Participant(Type type, Subscriber status, Size containerSize, String id) {
-    this.mType = type;
-    this.mStatus = status;
-    this.mContainer = containerSize;
-    this.id = id;
-  }
+    private final String mName;
+    private final OpenTokActivity mActivity;
+    private Boolean mSubscriberVideoOnly = false;
 
-  public Size getContainer() {
-    return mContainer;
-  }
+    public Participant(Context context, Stream stream) {
+        super(context, stream);
 
-  public Subscriber getStatus() {
-    return mStatus;
-  }
+        mActivity   = (OpenTokActivity) context;
+        mName       = "User" + ((int) (Math.random() * 1000));
+        setStyle(BaseVideoRenderer.STYLE_VIDEO_SCALE, BaseVideoRenderer.STYLE_VIDEO_FILL);
+    }
 
-  public String getId() {
-    return id;
-  }
+    public String getName() {
+        return mName;
+    }
 
-  public Type getType() {
-    return mType;
-  }
+    public Boolean getSubscriberVideoOnly() {
+        return mSubscriberVideoOnly;
+    }
 
-  public void setContainer(Size mContainer) {
-    this.mContainer = mContainer;
-  }
+
+
+
+
+
+
 }
-
-
-
-
-

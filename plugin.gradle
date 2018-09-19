@@ -18,19 +18,8 @@ allprojects {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.opentok.android:opentok-android-sdk:2.12.0'
-    compile 'com.android.support:appcompat-v7:26.0.1'
-    compile 'com.android.support:design:26.0.1'
+    compile 'com.android.support:appcompat-v7:23.1.0'
+    compile 'com.android.support:design:23.0.0'
     compile 'pub.devrel:easypermissions:0.4.0'
     compile 'com.android.support:recyclerview-v7:25.0.1'
-    compile 'com.jakewharton:butterknife:8.8.1'
-}
-configurations.all {
-    resolutionStrategy.eachDependency { DependencyResolveDetails details ->
-        def requested = details.requested
-        if (requested.group == 'com.android.support') {
-            if (!requested.name.startsWith("multidex")) {
-                details.useVersion '25.3.0'
-            }
-        }
-    }
-}
+} 
